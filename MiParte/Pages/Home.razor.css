@@ -1,0 +1,101 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo general de la página */
+body {
+    font-family: Georgia, serif;
+    color: #333;
+    background-color: #FFF9F0; /* Color de fondo de la página que se verá como borde alrededor del contenedor */
+    padding: 10px; /* Pequeño margen entre el borde de la ventana y el contenedor */
+}
+
+/* Configuración del contenedor principal */
+.container {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSSl_J_IWHwE3em35B5IEoTlFH_Aax_a_Nd3_fjok98o9sTYgZQ');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #333;
+    width: 97%; /* El contenedor ocupa el 100% del ancho de su contenedor */
+    max-width: calc(100vw - 20px); /* Espacio horizontal reducido para el borde */
+    max-height: calc(100vh - 50px); /* Espacio vertical reducido para el borde */
+    margin: 10px auto; /* Centrado automático en la página */
+    padding: 30px;
+    background-color: #FFF9F0; /* Fondo blanco translúcido */
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    overflow: auto; /* Evita que el contenido sobresalga del contenedor */
+}
+
+/* Encabezado centrado */
+header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.best-choice {
+    color: #f57c00;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.title {
+    font-size: 80px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: #303030;
+    margin-bottom: 20px;
+}
+
+    .title span.outline {
+        border: 4px solid #444;
+        padding: 5px 15px;
+    }
+
+/* Barra de búsqueda */
+.search-bar {
+    margin-top: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+    .search-bar input {
+        padding: 10px;
+        font-size: 25px;
+        width: 690px;
+        border: 0px solid #ccc;
+        border-radius: 100px;
+        outline: none;
+    }
+
+    .search-bar button {
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 25px;
+    }
+
+/* Pie de página */
+footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+    footer p {
+        font-size: 14px;
+        color: #555;
+    }
+
+    footer .highlight {
+        color: #f57c00;
+        font-weight: bold;
+    }

@@ -1,0 +1,71 @@
+﻿@page "/"
+@using System.Collections.Generic
+
+<PageTitle>Home</PageTitle>
+
+
+<div class="container">
+    <header>
+        <br>
+        <h1 class="title">BIBLIOTECA<br>Carlos<br><span class="outline">Mérida</span></h1>
+        <br> 
+        <!-- Barra de búsqueda con autocompletado -->
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar ISBN, Autor, Nombre" @bind="searchQuery" @oninput="UpdateSuggestions">
+            <button @onclick="PerformSearch">&#8594;</button>
+        </div>
+
+        <!-- Contenedor de sugerencias -->
+        @if (suggestions?.Count > 0)
+        {
+                <div class="suggestions">
+                @foreach (var suggestion in suggestions)
+                {
+                            <div class="suggestion-item" @onclick="() => SelectSuggestion(suggestion)">
+                        @suggestion
+                            </div>
+                }
+                </div>
+        }
+
+
+    </header>
+</div>
+
+@code {
+    private string searchQuery = "";  // Término de búsqueda ingresado
+    private List<string> suggestions;  // Sugerencias en tiempo real
+
+    // Método para actualizar las sugerencias mientras el usuario escribe
+    private void UpdateSuggestions()
+    {
+        // Lista de ejemplo (deberías conectarlo a tu base de datos)
+        var allBooks = new List<string>
+        {
+            "Libro 1 - Autor X",
+            "Libro 2 - Autor Y",
+            "Libro 3 - Autor Z",
+            "Historia de Carlos Mérida",
+            "Aprendiendo C# - Autor A"
+        };
+
+        // Filtra los libros según el término de búsqueda
+        suggestions = allBooks.FindAll(book =>
+            book.Contains(searchQuery, StringComparison.OrdinalIgnoreCase)
+        );
+    }
+
+    // Método para seleccionar una sugerencia
+    private void SelectSuggestion(string suggestion)
+    {
+        searchQuery = suggestion;  // Actualiza la barra de búsqueda con la sugerencia seleccionada
+        PerformSearch();  // Realiza la búsqueda cuando se selecciona una sugerencia
+    }
+
+    // Método para realizar la búsqueda (se ejecuta al presionar el botón)
+    private void PerformSearch()
+    {
+        // Aquí podrías redirigir a una página de resultados con el término `searchQuery` seleccionado
+        // Por ejemplo: NavigationManager.NavigateTo($"/results?query={searchQuery}");
+    }
+}

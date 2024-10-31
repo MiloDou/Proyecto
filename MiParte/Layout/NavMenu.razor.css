@@ -1,0 +1,72 @@
+.navbar-toggler {
+    background-color: rgba(255, 249, 240, 0.15); /* Fondo translúcido con el color pastel */
+}
+
+.top-row {
+    height: 3.5rem;
+    background-color: rgba(52, 58, 64, 0.7); /* Fondo gris oscuro translúcido */
+}
+
+.navbar-brand {
+    font-size: 1.1rem;
+    color: #ffffff;
+}
+
+.bi {
+    display: inline-block;
+    position: relative;
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-right: 0.75rem;
+    top: -1px;
+    background-size: cover;
+}
+
+/* Ajuste para los íconos en el menú de navegación con tonos suaves */
+.nav-item {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+    .nav-item:first-of-type {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item ::deep a {
+        color: #e0e0e0;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+        text-decoration: none;
+    }
+
+        .nav-item ::deep a.active {
+            background-color: rgba(255, 249, 240, 0.2); /* Activo con color pastel translúcido */
+            color: #ffffff;
+        }
+
+        .nav-item ::deep a:hover {
+            background-color: rgba(255, 249, 240, 0.1); /* Hover con color pastel translúcido */
+            color: #ffffff;
+        }
+
+@media (min-width: 641px) {
+    .navbar-toggler {
+        display: none;
+    }
+
+    .collapse {
+        display: block; /* Nunca colapsar la barra lateral en pantallas anchas */
+    }
+
+    .nav-scrollable {
+        height: calc(100vh - 3.5rem);
+        overflow-y: auto; /* Permitir desplazamiento para menús largos */
+    }
+}

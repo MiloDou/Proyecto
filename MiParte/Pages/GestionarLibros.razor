@@ -1,0 +1,123 @@
+﻿@page "/GestionarLibros"
+
+
+
+ <section>
+    <div class="container">
+        <div class="carousel">
+            <input type="radio" name="carousel" id="slide1" checked>
+            <input type="radio" name="carousel" id="slide2">
+            <input type="radio" name="carousel" id="slide3">
+            <input type="radio" name="carousel" id="slide4">
+            <input type="radio" name="carousel" id="slide5">
+            <input type="radio" name="carousel" id="slide6">
+            <!-- Aquí se pueden agregar más entradas según sea necesario -->
+
+            <div class="carousel__slides">
+                <div class="carousel__slide">
+                    <figure>
+                        <div>
+                            <img src="https://picsum.photos/id/1043/800/450" alt="Descripción 1">
+                        </div>
+                        <figcaption>
+                            <h4>Libro: </h4><p>La insoportable levedad del ser</p>
+                            <h4>Autor: </h4><p>Milan Kundera</p>
+                            <h4>ISBN: </h4><p>1</p>
+
+                            <span class="credit">Photo: Tim Marshall</span>
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="carousel__slide">
+                    <figure>
+                        <div>
+                            <img src="https://picsum.photos/id/1043/800/450" alt="Descripción 2">
+                        </div>
+                        <figcaption>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            <span class="credit">Photo: Christian Joudrey</span>                            
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="carousel__slide">
+                    <figure>
+                        <div>
+                            <img src="https://picsum.photos/id/1044/800/450" alt="Descripción 3">
+                        </div>
+                        <figcaption>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            <span class="credit">Photo: Steve Carter</span>                            
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="carousel__slide">
+                    <figure>
+                        <div>
+                            <img src="https://picsum.photos/id/1045/800/450" alt="Descripción 4">
+                        </div>
+                        <figcaption>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            <span class="credit">Photo: Aleksandra Boguslawska</span>                            
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="carousel__slide">
+                    <figure>
+                        <div>
+                            <img src="https://picsum.photos/id/1049/800/450" alt="Descripción 5">
+                        </div>
+                        <figcaption>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            <span class="credit">Photo: Rosan Harmens</span>                            
+                        </figcaption>
+                    </figure>
+                </div>
+                <div class="carousel__slide">
+                    <figure>
+                        <div>
+                            <img src="https://picsum.photos/id/1052/800/450" alt="Descripción 6">
+                        </div>
+                        <figcaption>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            <span class="credit">Photo: Annie Spratt</span>                            
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>    
+
+            <ul class="carousel__thumbnails">
+                <li>
+                    <label for="slide1"><img src="https://sarasvatilibreria.com/cdn/shop/products/la-insoportable-levedad-del-ser-milan-kundera-288947.jpg?v=1698902769" alt="Miniatura 1"></label>
+                </li>
+                <li>
+                    <label for="slide2"><img src="https://www.espacioforestal.cl/cdn/shop/files/obrasselectasalbertcamus_1024x1024.jpg?v=1723831226" alt="Miniatura 2"></label>
+                </li>
+                <li>
+                    <label for="slide3"><img src="https://www.agenciabalcells.com/fileadmin/_processed_/csm_Obra_cri__tica_81042aff9a.jpg" alt="Miniatura 3"></label>
+                </li>
+                <li>
+                    <label for="slide4"><img src="https://images.ecestaticos.com/rL51F3G5AHmet43UBomSJW4DtW0=/0x85:484x742/1440x1920/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F2b7%2F501%2F34c%2F2b750134ce95a522bbe966166af35d22.jpg" alt="Miniatura 4"></label>
+                </li>
+                <li>
+                    <label for="slide5"><img src="https://quelibroleo.com/images/libros/libro_1362278073.jpg" alt="Miniatura 5"></label>
+                </li>
+                <li>
+                    <label for="slide6"><img src="https://scontent.fgua9-1.fna.fbcdn.net/v/t39.30808-6/242924204_4996611680352959_2789765760175543827_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_ohc=C6ezb7_FtEsQ7kNvgFx1PfZ&_nc_zt=23&_nc_ht=scontent.fgua9-1.fna&_nc_gid=Aw-4rmR2pjLqVY9lsJGJsxe&oh=00_AYCwl3MC5QNz-oky9jRHd2HtLqmyhLtULHNQ97AnVJkZUQ&oe=6726644D" alt="Miniatura 6"></label>
+                </li>
+            </ul>
+
+            <div class="carousel__navigation">
+                <button onclick="document.getElementById('slide1').checked = true;">&#10094;</button>
+                <button onclick="document.getElementById('slide2').checked = true;">&#10095;</button>
+                <button onclick="document.getElementById('slide3').checked = true;">&#10096;</button>
+                <button onclick="document.getElementById('slide4').checked = true;">&#10097;</button>
+                <button onclick="document.getElementById('slide5').checked = true;">&#10098;</button>
+                <button onclick="document.getElementById('slide6').checked = true;">&#10099;</button>
+            </div>
+        </div>
+    </div>
+</section>
+@code {
+
+
+}
