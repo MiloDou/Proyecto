@@ -1,6 +1,26 @@
 ﻿@page "/AgregarLibro"
-<h3>AgregarLibro</h3>
+<section>
+    <div class="container">
+        <form action="/submit_book" method="post" enctype="multipart/form-data">
+            <h2>Formulario de Ingreso de Libros</h2>
+            <label for="titulo">Título del Libro:</label><br>
+            <input type="text" id="titulo" name="titulo" required><br><br>
 
+            <label for="isbn">ISBN:</label><br>
+            <input type="text" id="isbn" name="isbn" required><br><br>
+
+            <label for="autor">Autor:</label><br>
+            <input type="text" id="autor" name="autor" required><br><br>
+
+            <label for="imagen">Imagen del Libro:</label><br>
+            <input type="file" id="imagen" name="imagen" accept="image/*"><br><br>
+
+            <button type="submit" >Agregar Libro</button>
+        </form>
+    </div>
+</section>
+
+      
 @code {
 
 }
