@@ -14,7 +14,7 @@ body {
 
 /* Configuración del contenedor principal */
 .container {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), url('https://www.art.salon/images/carlos-merida_el-duende-amarillo_AID1092806.jpg?f=grey');
+    background-image: linear-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255,0.09 )), url('https://www.art.salon/images/carlos-merida_el-duende-amarillo_AID1092806.jpg?f=grey');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -73,6 +73,7 @@ header {
         border: 0px solid #ccc;
         border-radius: 100px;
         outline: none;
+        background-color: #F7F2EB;
     }
 
     .search-bar button {

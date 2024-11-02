@@ -15,13 +15,13 @@ main {
 /* Sidebar con un gradiente vertical, iniciando con azul oscuro y terminando en morado */
 .sidebar {
     color: #e0e0e0; /* Texto claro para legibilidad en el fondo oscuro */
-    background-color: #081F5C;
+    background-color: #334EAC;
 }
 
 /* Barra superior (top-row) con fondo gris claro y borde inferior */
 .top-row {
-    background-color: #081F5C;
-    border-bottom: 5px solid #081F5C; /* Borde gris claro para un sutil contorno */
+    background-color: #BAD6EB;
+    border-bottom: 5px solid #BAD6EB; /* Borde gris claro para un sutil contorno */
     justify-content: flex-end;
     height: 3.5rem;
     display: flex;
