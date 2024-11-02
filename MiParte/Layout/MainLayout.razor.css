@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: #F7F2EB;
+    background-color: #FFF9F0;
     /* Color de fondo claro para un contraste suave */
 }
 
@@ -14,15 +14,14 @@ main {
 
 /* Sidebar con un gradiente vertical, iniciando con azul oscuro y terminando en morado */
 .sidebar {
-    background-image: url('https://www.colorhexa.com/081f5c.png');
     color: #e0e0e0; /* Texto claro para legibilidad en el fondo oscuro */
-    background-color: #F9F5FF;
+    background-color: #081F5C;
 }
 
 /* Barra superior (top-row) con fondo gris claro y borde inferior */
 .top-row {
-    background-color: #BAD6EB;
-    border-bottom: 1px solid #cccccc; /* Borde gris claro para un sutil contorno */
+    background-color: #081F5C;
+    border-bottom: 5px solid #081F5C; /* Borde gris claro para un sutil contorno */
     justify-content: flex-end;
     height: 3.5rem;
     display: flex;
@@ -35,13 +34,13 @@ main {
         white-space: nowrap;
         margin-left: 1.5rem;
         text-decoration: none;
-        color: #333333; /* Color de texto oscuro para contraste */
+        color: black; /* Color de texto oscuro para contraste */
     }
 
         /* Enlaces en la barra superior: subrayado al hacer hover */
         .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
             text-decoration: underline;
-            color: #333333; /* Acentuar el color al hacer hover */
+            color: black; /* Acentuar el color al hacer hover */
         }
 
         /* Ajuste de texto para el primer enlace en la barra superior, con texto truncado si es necesario */
@@ -79,7 +78,7 @@ main {
 
     /* Barra superior fija en la parte superior, con índice de apilamiento alto */
     .top-row {
-        position: sticky;
+        position: static;
         top: 0;
         z-index: 1;
     }

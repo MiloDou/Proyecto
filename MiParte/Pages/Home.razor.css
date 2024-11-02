@@ -19,14 +19,14 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     color: #333;
-    width: 97%; /* El contenedor ocupa el 100% del ancho de su contenedor */
+    width: 100%; /* El contenedor ocupa el 100% del ancho de su contenedor */
     max-width: calc(100vw - 20px); /* Espacio horizontal reducido para el borde */
     max-height: calc(100vh - 50px); /* Espacio vertical reducido para el borde */
-    margin: 10px auto; /* Centrado automático en la página */
-    padding: 30px;
+    margin: 0px 0px; /* Centrado automático en la página */
+    padding:9px;
     background-color: #FFF9F0; /* Fondo blanco translúcido */
-    border-radius: 15px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 13px;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2);
     overflow: auto; /* Evita que el contenido sobresalga del contenedor */
 }
 

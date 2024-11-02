@@ -151,7 +151,8 @@ section {
 }
 
 .book-details {
-    display: flex;
+    color: black;
+        display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
