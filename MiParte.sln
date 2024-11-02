@@ -5,6 +5,12 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MiParte", "MiParte\MiParte.csproj", "{C3EA350E-0BC8-4FC6-AE3E-B23A6C574242}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cliente", "Cliente", "{F4D79633-0573-4DA1-8996-E2062C25214C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servidor", "Servidor", "{E00CD30F-EE8F-4395-B17B-A42FBE2A59BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaCarlosMeridaAPI", "Servidor\BibliotecaCarlosMeridaAPI\BibliotecaCarlosMeridaAPI\BibliotecaCarlosMeridaAPI.csproj", "{D96EB593-184A-4F1A-BAE3-8495CF501A3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,17 @@ Global
 		{C3EA350E-0BC8-4FC6-AE3E-B23A6C574242}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3EA350E-0BC8-4FC6-AE3E-B23A6C574242}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3EA350E-0BC8-4FC6-AE3E-B23A6C574242}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D96EB593-184A-4F1A-BAE3-8495CF501A3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D96EB593-184A-4F1A-BAE3-8495CF501A3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D96EB593-184A-4F1A-BAE3-8495CF501A3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D96EB593-184A-4F1A-BAE3-8495CF501A3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C3EA350E-0BC8-4FC6-AE3E-B23A6C574242} = {F4D79633-0573-4DA1-8996-E2062C25214C}
+		{D96EB593-184A-4F1A-BAE3-8495CF501A3C} = {E00CD30F-EE8F-4395-B17B-A42FBE2A59BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E40451A5-6437-433D-9CD5-0818D4B13C57}

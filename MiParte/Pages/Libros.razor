@@ -1,0 +1,99 @@
+﻿@page "/libros"
+@inject LibroService libroService
+@using BlazorWebAppMovies.Models
+@using System.IO
+
+<h3>Gestionar Libros</h3>
+
+<EditForm Model="@nuevoLibro" OnValidSubmit="@GuardarLibro">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="titulo">Título:</label>
+        <InputText id="titulo" @bind-Value="nuevoLibro.Titulo" />
+    </div>
+
+    <div>
+        <label for="autor">Autor:</label>
+        <InputText id="autor" @bind-Value="nuevoLibro.Autor" />
+    </div>
+
+    <div>
+        <label for="isbn">ISBN:</label>
+        <InputText id="isbn" @bind-Value="nuevoLibro.ISBN" />
+    </div>
+
+    <div>
+        <label for="estado">Disponible para Préstamo:</label>
+        <InputCheckbox id="estado" @bind-Value="nuevoLibro.DisponiblePrestamo" />
+    </div>
+
+    <div>
+        <label for="portada">Portada:</label>
+        <InputFile OnChange="@(async e => await SubirPortada(e))" />
+    </div>
+
+    <button type="submit">Guardar</button>
+</EditForm>
+
+@if (libros != null)
+{
+    <h3>Lista de Libros</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>ISBN</th>
+                <th>Disponible para Préstamo</th>
+                <th>Portada</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var libro in libros)
+            {
+                <tr>
+                    <td>@libro.Titulo</td>
+                    <td>@libro.Autor</td>
+                    <td>@libro.ISBN</td>
+                    <td>@(libro.DisponiblePrestamo ? "Sí" : "No")</td>
+                    <td>
+                        @if (libro.Portada != null)
+                        {
+                            <img src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Portada del libro" width="100" height="150" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Libro nuevoLibro = new Libro();
+    private List<Libro> libros;
+
+    protected override async Task OnInitializedAsync()
+    {
+        libros = (await libroService.GetLibrosAsync()).ToList();
+    }
+
+    private async Task SubirPortada(InputFileChangeEventArgs e)
+    {
+        var archivo = e.File;
+        if (archivo != null)
+        {
+            using var ms = new MemoryStream();
+            await archivo.OpenReadStream().CopyToAsync(ms);
+            nuevoLibro.Portada = ms.ToArray();
+        }
+    }
+
+    private async Task GuardarLibro()
+    {
+        await libroService.AddLibroAsync(nuevoLibro);
+        nuevoLibro = new Libro();  // Limpiar el formulario después de guardar
+        libros = (await libroService.GetLibrosAsync()).ToList();  // Actualizar la lista de libros
+    }
+}
