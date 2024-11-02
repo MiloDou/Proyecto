@@ -8,6 +8,7 @@ body {
     font-family: Helvetica, sans-serif;
     background-color: #fff;
     color: #333;
+    background-color: #FFF9F0;
 }
 
 .container {
@@ -67,35 +68,6 @@ header {
         font-size: 18px; /* Aumenta el tamaño de la fuente del botón si es necesario */
     }
 
-.books {
-    display: flex;
-    justify-content: center;
-    margin: 50px 0;
-    gap: 20px;
-}
-
-.book {
-    width: 100px;
-    height: 300px;
-    background-color: #f57c00;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: rotate(-20deg);
-    font-size: 18px;
-    font-weight: bold;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    position: relative;
-    border-radius: 10px;
-}
-
-    .book.modern-art {
-        background-color: #1e88e5;
-        transform: rotate(20deg);
-    }
-
 footer {
     text-align: center;
     margin-top: 50px;
@@ -118,6 +90,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     color: #333;
+
 }
 
 .container {

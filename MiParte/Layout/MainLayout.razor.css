@@ -2,12 +2,14 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background-color: #FFF9F0; /* Color de fondo claro para un contraste suave */
+    background-color: #F7F2EB;
+    /* Color de fondo claro para un contraste suave */
 }
 
 /* Define el contenedor principal para expandirse, ocupando el espacio disponible */
 main {
     flex: 1;
+    background-color: #FFF9F0;
 }
 
 /* Sidebar con un gradiente vertical, iniciando con azul oscuro y terminando en morado */
