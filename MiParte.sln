@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cliente", "Cliente", "{F4D7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servidor", "Servidor", "{E00CD30F-EE8F-4395-B17B-A42FBE2A59BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaCarlosMeridaAPI", "Servidor\BibliotecaCarlosMeridaAPI\BibliotecaCarlosMeridaAPI\BibliotecaCarlosMeridaAPI.csproj", "{D96EB593-184A-4F1A-BAE3-8495CF501A3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaCarlosMeridaAPI", "Servidor\BibliotecaCarlosMeridaAPI\BibliotecaCarlosMeridaAPI\BibliotecaCarlosMeridaAPI.csproj", "{D96EB593-184A-4F1A-BAE3-8495CF501A3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{61A3737C-0CC4-41C3-B9CF-9E91371B7370}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +34,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C3EA350E-0BC8-4FC6-AE3E-B23A6C574242} = {F4D79633-0573-4DA1-8996-E2062C25214C}
 		{D96EB593-184A-4F1A-BAE3-8495CF501A3C} = {E00CD30F-EE8F-4395-B17B-A42FBE2A59BE}
+		{61A3737C-0CC4-41C3-B9CF-9E91371B7370} = {F4D79633-0573-4DA1-8996-E2062C25214C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E40451A5-6437-433D-9CD5-0818D4B13C57}

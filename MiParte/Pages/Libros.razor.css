@@ -1,0 +1,74 @@
+﻿/* Contenedor general para la página de gestión de libros */
+.contenedor-gestion-libros {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #82a0d1; /* Color de fondo azul suave */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+}
+
+/* Estilo para el formulario */
+.formulario-libro {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Botón de agregar portada */
+.btn-portada {
+    width: 100px;
+    height: 100px;
+    background-color: #ffffff;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+    .btn-portada:hover {
+        background-color: #f0f0f0;
+    }
+
+/* Estilo del ícono de la portada */
+.icono-mas {
+    font-size: 3rem;
+    color: #333;
+}
+
+/* Botón de agregar libro */
+.btn-agregar {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+    .btn-agregar:hover {
+        background-color: #e0e0e0;
+    }
+
+/* Inputs del formulario */
+.input-text {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Ajustes generales */
+label {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}

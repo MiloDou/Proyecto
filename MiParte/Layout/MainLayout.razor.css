@@ -20,7 +20,7 @@ main {
 
 /* Barra superior (top-row) con fondo gris claro y borde inferior */
 .top-row {
-    background-color: #BAD6EB;
+    background-color: #081F5C;
     border-bottom: 5px solid #BAD6EB; /* Borde gris claro para un sutil contorno */
     justify-content: flex-end;
     height: 3.5rem;
