@@ -43,6 +43,7 @@ li {
     background-color: white;
 }
 
+
     li::before {
         content: '';
         display: block;
@@ -77,6 +78,18 @@ h3 {
         background-color: var(--c1);
         color: white;
     }
+
+.sin-elementos {
+    background-color: #ffcccc; /* Color de fondo rojo claro */
+    color: #990000; /* Color de texto rojo oscuro */
+    font-weight: bold; /* Texto en negrita */
+    text-align: center; /* Centrar el texto */
+    padding: 10px; /* Espaciado interno */
+    border: 2px dashed #990000; /* Borde punteado */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-top: 15px; /* Separación superior */
+}
+
 .return-button {
     display: block;
     margin-top: 10px;

@@ -118,9 +118,12 @@ table.table td i {
 }
 
 table.table .avatar {
+    width: 40px; /* Ajusta el tamaño según lo necesites */
+    height: 40px; /* Ajusta el tamaño según lo necesites */
     border-radius: 50%;
     vertical-align: middle;
     margin-right: 10px;
+    object-fit: cover; /* Asegura que la imagen se recorte y mantenga la forma circular */
 }
 
 .status {
