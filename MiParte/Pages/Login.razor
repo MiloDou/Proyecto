@@ -1,0 +1,46 @@
+﻿@page "/login"
+@using MiParte.Models
+@inject UsuarioService usuarioService
+@inject NavigationManager navigationManager
+
+<h3>Login</h3>
+
+<EditForm Model="@usuario" OnValidSubmit="@HandleLogin">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label for="username">Username:</label>
+        <InputText id="username" @bind-Value="usuario.Username" />
+    </div>
+
+    <div>
+        <label for="pwd">Password:</label>
+        <InputText id="pwd" @bind-Value="usuario.Pwd" type="password" />
+    </div>
+
+    <button type="submit">Login</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color: red;">@errorMessage</p>
+}
+
+@code {
+    private Usuario usuario = new Usuario();
+    private string errorMessage;
+
+    private async Task HandleLogin()
+    {
+        try
+        {
+            var loggedInUser = await usuarioService.LoginAsync(usuario);
+            navigationManager.NavigateTo("/"); // Redirige al inicio después del login
+        }
+        catch (Exception ex)
+        {
+            errorMessage = ex.Message;
+        }
+    }
+}

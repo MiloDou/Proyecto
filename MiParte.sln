@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cliente", "Cliente", "{F4D7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servidor", "Servidor", "{E00CD30F-EE8F-4395-B17B-A42FBE2A59BE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NewFolder1", "NewFolder1", "{61A3737C-0CC4-41C3-B9CF-9E91371B7370}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BibliotecaCarlosMeridaAPI", "Servidor\BibliotecaCarlosMeridaAPI\BibliotecaCarlosMeridaAPI.csproj", "{27E4043F-9710-4264-A357-D1FE881632F3}"
 EndProject
 Global
@@ -33,7 +31,6 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C3EA350E-0BC8-4FC6-AE3E-B23A6C574242} = {F4D79633-0573-4DA1-8996-E2062C25214C}
-		{61A3737C-0CC4-41C3-B9CF-9E91371B7370} = {F4D79633-0573-4DA1-8996-E2062C25214C}
 		{27E4043F-9710-4264-A357-D1FE881632F3} = {E00CD30F-EE8F-4395-B17B-A42FBE2A59BE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BlazorWebAppMovies.Models;
+using MiParte.Models;
 
 namespace BlazorWebAppMovies.Data
 {
@@ -11,5 +12,6 @@ namespace BlazorWebAppMovies.Data
         }
 
         public DbSet<Libro> Libros { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }
