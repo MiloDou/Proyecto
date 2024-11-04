@@ -15,11 +15,40 @@ public class LibroService
 
     public async Task<IEnumerable<Libro>> GetLibrosAsync()
     {
-        return await _httpClient.GetFromJsonAsync<IEnumerable<Libro>>("api/Libros");
+        try
+        {
+            return await _httpClient.GetFromJsonAsync<IEnumerable<Libro>>("api/Libros");
+        }
+        catch (HttpRequestException ex)
+        {
+            // Manejar error HTTP
+            Console.WriteLine($"Error al obtener libros: {ex.Message}");
+            return Enumerable.Empty<Libro>();
+        }
+        catch (Exception ex)
+        {
+            // Manejar cualquier otro error
+            Console.WriteLine($"Error inesperado: {ex.Message}");
+            return Enumerable.Empty<Libro>();
+        }
     }
 
     public async Task AddLibroAsync(Libro libro)
     {
-        await _httpClient.PostAsJsonAsync("api/Libros", libro);
+        try
+        {
+            await _httpClient.PostAsJsonAsync("api/Libros", libro);
+        }
+        catch (HttpRequestException ex)
+        {
+            // Manejar error HTTP
+            Console.WriteLine($"Error al agregar libro: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            // Manejar cualquier otro error
+            Console.WriteLine($"Error inesperado: {ex.Message}");
+        }
     }
 }
+

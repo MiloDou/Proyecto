@@ -3,41 +3,75 @@
 @using BlazorWebAppMovies.Models
 @using System.IO
 
-<div class="contenedor-gestion-libros">
-    <h3>Gestionar Libros</h3>
-    <EditForm Model="@nuevoLibro" OnValidSubmit="@GuardarLibro" class="formulario-libro">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
+<h3>Gestionar Libros</h3>
 
-        <div class="campo-formulario">
-            <label for="titulo">Título:</label>
-            <InputText id="titulo" @bind-Value="nuevoLibro.Titulo" class="input-text" />
-        </div>
+<EditForm Model="@nuevoLibro" OnValidSubmit="@GuardarLibro">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-        <div class="campo-formulario">
-            <label for="autor">Autor:</label>
-            <InputText id="autor" @bind-Value="nuevoLibro.Autor" class="input-text" />
-        </div>
+    <div>
+        <label for="titulo">Título:</label>
+        <InputText id="titulo" @bind-Value="nuevoLibro.Titulo" />
+    </div>
+    <div>
+        <label for="Genero">Genero:</label>
+        <InputText id="titulo" @bind-Value="nuevoLibro.Genero" />
+    </div>
+    <div>
+        <label for="autor">Autor:</label>
+        <InputText id="autor" @bind-Value="nuevoLibro.Autor" />
+    </div>
+    dotnet
+    <div>
+        <label for="isbn">ISBN:</label>
+        <InputText id="isbn" @bind-Value="nuevoLibro.ISBN" />
+    </div>
 
-        <div class="campo-formulario">
-            <label for="isbn">ISBN:</label>
-            <InputText id="isbn" @bind-Value="nuevoLibro.ISBN" class="input-text" />
-        </div>
+    <div>
+        <label for="estado">Disponible para Préstamo:</label>
+        <InputCheckbox id="estado" @bind-Value="nuevoLibro.DisponiblePrestamo" />
+    </div>
 
-        <div class="campo-formulario">
-            <label for="estado">Disponible para Préstamo:</label>
-            <InputCheckbox id="estado" @bind-Value="nuevoLibro.DisponiblePrestamo" class="input-checkbox" />
-        </div>
+    <div>
+        <label for="portada">Portada:</label>
+        <InputFile OnChange="@(async e => await SubirPortada(e))" />
+    </div>
 
-        <div class="campo-formulario">
-            <label for="portada">Portada:</label>
-            <InputFile OnChange="@(async e => await SubirPortada(e))" class="input-file" />
-        </div>
-        
-        <button type="submit" class="btn-guardar">Guardar</button>
-        </EditForm>
-   </div>
-    
+    <button type="submit">Guardar</button>
+</EditForm>
+
+@if (libros != null)
+{
+    <h3>Lista de Libros</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>ISBN</th>
+                <th>Disponible para Préstamo</th>
+                <th>Portada</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var libro in libros)
+            {
+                <tr>
+                    <td>@libro.Titulo</td>
+                    <td>@libro.Autor</td>
+                    <td>@libro.ISBN</td>
+                    <td>@(libro.DisponiblePrestamo ? "Sí" : "No")</td>
+                    <td>
+                        @if (libro.Portada != null)
+                        {
+                            <img src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Portada del libro" width="100" height="150" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
 
 @code {
     private Libro nuevoLibro = new Libro();
