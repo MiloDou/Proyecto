@@ -15,11 +15,13 @@
 
   <ItemGroup>
     <Content Remove="Pages\Login.razor.razor" />
+    <Content Remove="Pages\Prueba.razor" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Pages\Login.css" />
     <None Remove="Pages\LoginAdmin.razpr" />
+    <None Remove="Pages\Prueba.razor.css" />
     <None Remove="Pages\StyleSheet.css" />
   </ItemGroup>
 

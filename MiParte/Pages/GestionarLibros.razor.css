@@ -1,4 +1,5 @@
-﻿@mixin aspect-ratio($width, $height) {
+﻿
+@mixin aspect-ratio($width, $height) {
     position: relative;
 
     &:before {
@@ -22,11 +23,12 @@
 // Styling
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     color: #333;
     background-color: #FFF9F0; /* Color de fondo de la página que se verá como borde alrededor del contenedor */
     padding: 10px; /* Pequeño margen entre el borde de la ventana y el contenedor */
 }
+
 section {
     background: #FFF9F0;
     padding: 0px 0;
@@ -43,8 +45,8 @@ section {
     text-align: left;
     position: relative;
     margin-bottom: 0px;
-   
     > input
+
 {
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(150%);
@@ -55,6 +57,7 @@ section {
     padding: 0;
     position: absolute;
     &:nth-of-type(6):checked ~ .carousel__slides .carousel__slide:first-of-type
+
 {
     margin-left: -500%;
 }
@@ -132,7 +135,7 @@ section {
 
 {
     display: flex;
-    margin:25px;
+    margin: 25px;
 }
 
 
@@ -142,8 +145,8 @@ section {
 }
 
 .book-cover {
-    width: 150px;
-    height: 200px;
+    width: 300px;
+    height: 350px;
     object-fit: cover;
     margin-right: 45px;
     border: 4px solid #081F5C;
@@ -160,6 +163,7 @@ section {
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para destacar el contenedor */
 }
+
 .book-container {
     display: flex;
     gap: 20px; /* Espacio entre la imagen y el contenedor de detalles */
@@ -170,11 +174,14 @@ section {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para el contenedor */
 }
 
-    .book-details p {
-        margin: 15px 0;
-        font-size: 1.5rem;
-    }
+.book-details p {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 9px 0;
+    font-size: 1.5rem;
+}
+
 .btn-prestar {
+    font-family: 'Times New Roman', Times, serif;
     margin-top: 15px;
     padding: 13px 15px;
     background-image: url('https://img.freepik.com/fotos-premium/fondo-abstracto-acuarela-textura-beige-acuarela_829251-230.jpg?w=826'); /* Reemplaza 'URL_DE_LA_IMAGEN' con la URL de la imagen */
@@ -234,9 +241,7 @@ figcaption {
     margin: 100px;
     display: flex;
     margin: 0 -10px;
-    
-    
-    .carousel__slides 
+    .carousel__slides
 
 {
     margin-top: 20px;

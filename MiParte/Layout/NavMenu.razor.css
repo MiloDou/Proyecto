@@ -4,13 +4,13 @@
 
 /*Es la parte de arriba de la barra*/
 .top-row {
-    height: 3.5rem;
+    height: 1.8rem;
     background-color: #334EAC; /* Fondo gris oscuro translúcido */
 }
 
 .navbar-brand {
     font-size: 1.1rem;
-    color: #ffffff;
+    color: #F7F2EB;
 }
 
 .bi {
@@ -38,7 +38,7 @@
     }
 
     .nav-item ::deep a {
-        color: #e0e0e0;
+        color: #F7F2EB;
         border-radius: 4px;
         height: 3rem;
         display: flex;

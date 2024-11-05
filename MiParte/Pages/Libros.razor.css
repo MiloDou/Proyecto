@@ -1,73 +1,245 @@
-﻿/* Contenedor general para la página de gestión de libros */
-.contenedor-gestion-libros {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #081F5C   ; /* Color de fondo azul suave */
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Estilo para el formulario */
-.formulario-libro {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-}
-
-/* Botón de agregar portada */
-.btn-portada {
-    width: 100px;
-    height: 100px;
-    background-color: #ffffff;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-    .btn-portada:hover {
-        background-color: #f0f0f0;
-    }
-
-/* Estilo del ícono de la portada */
-.icono-mas {
-    font-size: 3rem;
-    color: #333;
-}
-
-/* Botón de agregar libro */
-.btn-agregar {
+html,
+body {
+    height: 100%;
     width: 100%;
-    padding: 0.5rem;
-    background-color: #fff;
-    color: #333;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #FFF;
 }
 
-    .btn-agregar:hover {
-        background-color: #e0e0e0;
+body {
+    background: url('https://www.arthistoryproject.com/site/assets/files/32656/carlos_merida-dancers_of_tlaxcala-1951-trivium-art-history-1.webp') no-repeat center center padding-box;
+    background-size: cover;
+    color: #333;
+    display: flex;
+    align-items: flex-start; /* Alinear elementos al inicio */
+    justify-content: center;
+    height: 100vh;
+    border-radius: 13px;
+}
+
+h3 {
+    color: #334EAC;
+    margin-bottom: 1rem;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Contenedor principal centrado */
+.container {
+    overflow: auto; /* Evita que el contenido sobresalga del contenedor */
+    max-width: calc(100vw - 20px); /* Espacio horizontal reducido para el borde */
+    max-height: calc(100vh - 50px); /* Espacio vertical reducido para el borde */
+    border-radius: 13px;
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+    background-color: rgba(255, 249, 240, 0.95);
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+    text-align: left;
+    padding: 40px;
+    display: unset;
+    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+    position: center;
+}
+
+/* Estilos para el formulario */
+form {
+    margin-bottom: 0.3rem;
+}
+
+    form div {
+        margin-bottom: 1rem;
     }
 
-/* Inputs del formulario */
-.input-text {
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #081F5C;
+}
+
+/* Estilos de entradas de texto */
+input[type="text"] {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Ajustes generales */
-label {
-    font-size: 1rem;
-    color: #333;
-    margin-bottom: 0.5rem;
+    input[type="text"]:focus {
+        border-color: #334EAC;
+        outline: none;
+        box-shadow: 0 4px 8px rgba(51, 78, 172, 0.3);
+    }
+
+/* Estilos para el botón de archivo */
+input[type="file"] {
+    display: none; /* Ocultar el input original */
 }
+
+.file-upload-label {
+    position: center;
+    display: inline-block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+    .file-upload-label:hover {
+        background-color: #e6f7ff;
+        border-color: #334EAC;
+    }
+
+/* Espaciado entre filas */
+.form-row {
+    margin-bottom: 0.5rem;
+    width: 100%/* Espacio estético entre filas */
+}
+
+/* Estilos de checkbox */
+input[type="checkbox"] {
+    width: 50px;
+    height: 50px;
+    appearance: none;
+    border: 2px solid #334EAC;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+    input[type="checkbox"]:checked {
+        background-color: #334EAC;
+        border-color: #334EAC;
+        position: relative;
+    }
+
+        input[type="checkbox"]:checked::after {
+            content: '✓';
+            color: #FFF9F0;
+            font-size: 40rem;
+            position: absolute;
+            top: 0;
+            left: 2px;
+        }
+
+/* Estilos para botones */
+.btn {
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 45px;
+    max-width: 160px;
+    position: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+    display: flex; /* Usar flex para centrar el contenido */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+.effect01 {
+
+    color: #FFF;
+    border: 4px solid #000;
+    box-shadow: 0px 0px 0px 1px #000 inset;
+    background-color: #000;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+    .effect01:hover {
+        border: 4px solid #666;
+        background-color: #FFF;
+        box-shadow: 0px 0px 0px 4px #EEE inset;
+    }
+
+    .effect01 span {
+        transition: all 0.2s ease-out;
+        z-index: 2;
+    }
+
+    .effect01:hover span {
+        letter-spacing: 0.13em;
+        color: #333;
+    }
+
+    .effect01:after {
+        background: #FFF;
+        content: "";
+        height: 155px;
+        left: -75px;
+        opacity: .8;
+        position: absolute;
+        top: -50px;
+        transform: rotate(35deg);
+        width: 50px;
+        transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+        z-index: 1;
+    }
+
+    .effect01:hover:after {
+        background: #FFF;
+        opacity: 0;
+        left: 120%;
+        transform: rotate(40deg);
+    }
+
+/* Estilos para la tabla de libros */
+table {
+    margin-right: 10px;
+    margin-left: 20px;
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    background-color: #FFF9F0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    table th,
+    table td {
+        padding: 1.6rem;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+    }
+
+    table th {
+        background-color: #334EAC;
+        color: #FFF9F0;
+        font-weight: bold;
+    }
+
+    table td img {
+        border-radius: 4px;
+    }
+
+    /* Estilos para filas */
+    table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    table tr:hover {
+        background-color: #e6f7ff;
+    }

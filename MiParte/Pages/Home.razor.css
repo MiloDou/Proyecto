@@ -86,18 +86,3 @@ header {
         font-size: 25px;
     }
 
-/* Pie de página */
-footer {
-    text-align: center;
-    margin-top: 30px;
-}
-
-    footer p {
-        font-size: 14px;
-        color: #555;
-    }
-
-    footer .highlight {
-        color: #f57c00;
-        font-weight: bold;
-    }
