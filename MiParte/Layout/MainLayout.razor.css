@@ -33,7 +33,9 @@ main {
     align-items: center;
     padding-left: 1rem;
 }
-
+    .top-row px-4 {
+        background-color: #FFF9F0;
+    }
     /* Estilos para los enlaces y botones en la barra superior, sin salto de línea */
     .top-row ::deep a, .top-row ::deep .btn-link {
         white-space: nowrap;
@@ -86,7 +88,7 @@ main {
         position: static;
         top: 0;
         z-index: 1;
-        color:  
+   
     }
 
         /* Ajuste para enlaces en la barra de autenticación */
