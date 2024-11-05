@@ -1,71 +1,73 @@
 ﻿@page "/GestionarPrestamos"
+@inject LibroService libroService
 
-<ol style="--length: 5" role="list">
-    @foreach (var libro in Libros.ToList())
-    {
-            <li style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
-                <div>
-                    <h3>@libro.Titulo</h3>
-                    <p><strong>Autor:</strong> @libro.Autor</p>
-                    <p><strong>Género:</strong> @libro.Genero</p>
-                    <p><strong>ISBN:</strong> @libro.ISBN</p>
-                    <p>@libro.Descripcion</p>
-                    <button class="return-button" @onclick="() => EliminarLibro(libro)">
-                        Devolver libro
-                    </button>
-                </div>
-                <div>
-                    <img src="@libro.ImagenUrl" alt="Imagen de @libro.Titulo" style="width: 150px; height: auto; margin-left: 20px;">
-                </div>
-            </li>
-    }
-</ol>
+<div class="sort-container">
+    <label for="sortSelect">Ordenar por:</label>
+    <select id="sortSelect" @onchange="SortLibros">
+        <option value="titulo">Título</option>
+        <option value="autor">Autor</option>
+        <option value="genero">Género</option>
+        <option value="isbn">ISBN</option>
+    </select>
+</div>
 
-@if (Libros.Count == 0)
+@if (!string.IsNullOrEmpty(errorMessage))
 {
-    
-    <div id="mensaje-vacio" class="sin-elementos">
-        <p>No hay más libros prestados.</p>
+    <div class="error-message">
+        <p>@errorMessage</p>
     </div>
+}
+else
+{
+    <ol style="--length: @Libros?.Count ?? 0" role="list">
+        @if (Libros != null)
+        {
+            @foreach (var libro in Libros)
+            {
+                <li style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
+                    <div>
+                        <h3>@libro.Titulo</h3>
+                        <p style="color: black;"><strong>Autor:</strong> @libro.Autor</p>
+                        <p style="color: black;"><strong>Género:</strong> @libro.Genero</p>
+                        <p style="color: black;"><strong>ISBN:</strong> @libro.ISBN</p>
+                        <button class="return-button" @onclick="() => EliminarLibro(libro)" disabled="@(libro.DisponiblePrestamo)">
+                            Devolver libro
+                        </button>
+                    </div>
+                    <div>
+                        @if (libro.Portada != null)
+                        {
+                            <img src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Imagen de @libro.Titulo" class="book-cover">
+                        }
+                    </div>
+                </li>
+            }
+        }
+    </ol>
 
+    @if (Libros == null || Libros.Count == 0)
+    {
+        <div id="mensaje-vacio" class="sin-elementos">
+            <p>No hay más libros prestados.</p>
+        </div>
+    }
 }
 
 @code {
-    public class Libro
-    {
-        public string Titulo { get; set; }
-        public string Descripcion { get; set; }
-        public string Autor { get; set; }
-        public string Genero { get; set; }
-        public string ISBN { get; set; }
-        public string ImagenUrl { get; set; } // URL de la imagen del libro
-        public bool Disponible { get; set; }
-    }
+    private List<Libro> Libros;
+    private string errorMessage;
 
-    private List<Libro> Libros = new List<Libro>
+    protected override async Task OnInitializedAsync()
     {
-        new Libro
+        try
         {
-            Titulo = "Discovery and assessment",
-            Descripcion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            Autor = "Autor 1",
-            Genero = "Género 1",
-            ISBN = "123-456-789",
-            ImagenUrl = "https://sarasvatilibreria.com/cdn/shop/products/la-insoportable-levedad-del-ser-milan-kundera-288947.jpg?v=1698902769", // Reemplaza con una URL real
-            Disponible = true
-        },
-        new Libro
+            Libros = (await libroService.GetLibrosAsync())?.ToList();
+        }
+        catch (Exception ex)
         {
-            Titulo = "Information gathering and analysis",
-            Descripcion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-            Autor = "Autor 2",
-            Genero = "Género 2",
-            ISBN = "987-654-321",
-            ImagenUrl = "https://via.placeholder.com/150", // Reemplaza con una URL real
-            Disponible = true
-        },
-        // Añade más libros según sea necesario
-    };
+            errorMessage = $"Error al cargar los libros: {ex.Message}";
+        }
+    }
 
     private void EliminarLibro(Libro libro)
     {
@@ -74,5 +76,30 @@
             Libros.Remove(libro); // Elimina el libro de la lista
         }
         StateHasChanged(); // Actualiza la vista para reflejar el cambio
+    }
+
+    private void SortLibros(ChangeEventArgs e)
+    {
+        string sortOption = e.Value.ToString();
+
+        switch (sortOption)
+        {
+            case "titulo":
+                Libros = Libros.OrderBy(l => l.Titulo).ToList();
+                break;
+            case "autor":
+                Libros = Libros.OrderBy(l => l.Autor).ToList();
+                break;
+            case "genero":
+                Libros = Libros.OrderBy(l => l.Genero).ToList();
+                break;
+            case "isbn":
+                Libros = Libros.OrderBy(l => l.ISBN).ToList();
+                break;
+            default:
+                break;
+        }
+
+        StateHasChanged(); // Actualiza la vista para reflejar el cambio de orden
     }
 }

@@ -3,28 +3,28 @@
 @inject UsuarioService usuarioService
 @inject NavigationManager navigationManager
 
-<h3>Login</h3>
+<h3 class="login-title">Login</h3>
 
-<EditForm Model="@usuario" OnValidSubmit="@HandleLogin">
+<EditForm Model="@usuario" OnValidSubmit="@HandleLogin" class="login-form">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <div>
-        <label for="username">Username:</label>
-        <InputText id="username" @bind-Value="usuario.Username" />
+    <div class="form-group">
+        <label for="username" class="form-label">Username:</label>
+        <InputText id="username" @bind-Value="usuario.Username" class="form-input" />
     </div>
 
-    <div>
-        <label for="pwd">Password:</label>
-        <InputText id="pwd" @bind-Value="usuario.Pwd" type="password" />
+    <div class="form-group">
+        <label for="pwd" class="form-label">Password:</label>
+        <InputText id="pwd" @bind-Value="usuario.Pwd" type="password" class="form-input" />
     </div>
 
-    <button type="submit">Login</button>
+    <button type="submit" class="login-button">Login</button>
 </EditForm>
 
 @if (!string.IsNullOrEmpty(errorMessage))
 {
-    <p style="color: red;">@errorMessage</p>
+    <p class="error-message">@errorMessage</p>
 }
 
 @code {

@@ -1,4 +1,5 @@
 ﻿@page "/GestionarUsuarios"
+@inject NavigationManager navigationManager
 
 <div class="container-xl">
     <div class="table-responsive">
@@ -9,7 +10,9 @@
                         <h2>Gestión de <b>Usuarios</b></h2>
                     </div>
                     <div class="col-sm-7">
-                        <button class="btn btn-secondary" @onclick="MostrarFormularioAgregar"><h6>Nuevo usuario</h6></button>
+                        <NavLink class="nav-link" href="/loginadmin">
+                            <button class="btn btn-secondary"><h6>Nuevo usuario></h6></button>
+                        </NavLink>
                     </div>
                 </div>
             </div>

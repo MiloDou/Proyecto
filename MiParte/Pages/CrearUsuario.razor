@@ -1,0 +1,50 @@
+﻿@page "/crearusuario"
+@inject UsuarioService usuarioService
+@inject NavigationManager navigationManager
+@using MiParte.Models;
+<h3>Agregar Nuevo Usuario</h3>
+
+<EditForm Model="@nuevoUsuario" OnValidSubmit="@AgregarUsuario">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="username" class="form-label">Username:</label>
+        <InputText id="username" @bind-Value="nuevoUsuario.Username" class="form-input" />
+    </div>
+
+    <div class="form-group">
+        <label for="pwd" class="form-label">Password:</label>
+        <InputText id="pwd" @bind-Value="nuevoUsuario.Pwd" type="password" class="form-input" />
+    </div>
+
+    <div class="form-group">
+        <label for="isAdmin" class="form-label">Is Admin:</label>
+        <InputCheckbox id="isAdmin" @bind-Value="nuevoUsuario.IsAdmin" class="form-input" />
+    </div>
+
+    <button type="submit" class="login-button">Agregar Usuario</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p class="error-message">@errorMessage</p>
+}
+
+@code {
+    private Usuario nuevoUsuario = new Usuario();
+    private string errorMessage;
+
+    private async Task AgregarUsuario()
+    {
+        try
+        {
+            await usuarioService.CrearUsuarioAsync(nuevoUsuario);
+            navigationManager.NavigateTo("/gestionarusuarios");
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al agregar el usuario: {ex.Message}";
+        }
+    }
+}

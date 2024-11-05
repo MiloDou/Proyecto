@@ -11,6 +11,11 @@ public class UsuarioService
     {
         _httpClient = httpClient;
     }
+    public async Task CrearUsuarioAsync(Usuario usuario)
+    {
+        var response = await _httpClient.PostAsJsonAsync("api/Usuarios", usuario); 
+        response.EnsureSuccessStatusCode();
+    }
 
     public async Task<Usuario> LoginAsync(Usuario usuario)
     {

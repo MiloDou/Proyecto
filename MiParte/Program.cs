@@ -10,8 +10,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5101/") });
 builder.Services.AddScoped<LibroService>();
 builder.Services.AddScoped<UsuarioService>();
-builder.Services.AddScoped<AuthenticationStateProviderService>(); // Registro del servicio
-builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationStateProviderService>(); // Registro de la implementación
+builder.Services.AddScoped<AuthenticationStateProviderService>();
+builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationStateProviderService>();
 builder.Services.AddAuthorizationCore();
 
 await builder.Build().RunAsync();

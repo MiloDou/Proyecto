@@ -55,7 +55,7 @@ li {
         background: linear-gradient(to right, var(--c1) var(--stop), var(--c2) var(--stop));
     }
 
-h3 {
+h3, label {
     @@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
     display: flex;
     align-items: baseline;
@@ -89,8 +89,12 @@ h3 {
     border-radius: 5px; /* Bordes redondeados */
     margin-top: 15px; /* Separación superior */
 }
-
-.return-button {
+.book-cover {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+}
+    .return-button {
     display: block;
     margin-top: 10px;
     padding: 8px 16px;
@@ -124,3 +128,87 @@ h3 {
             margin-right: 1.5rem;
         }
 }
+
+/* Contenedor del menú de ordenamiento */
+.sort-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    /* Etiqueta del menú de ordenamiento */
+    .sort-container label {
+        margin-right: 10px;
+        color: black;
+        font-weight: bold;
+    }
+
+    /* Menú desplegable */
+    .sort-container select {
+        padding: 5px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+
+    /* Botón de ordenamiento */
+    .sort-container .sort-button {
+        padding: 5px 10px;
+        background-color: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .sort-container .sort-button:hover {
+            background-color: #0056b3;
+        }
+
+.book-cover {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+}
+
+p, h3 {
+    color: black;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.sin-elementos {
+    background-color: #ffcccc; /* Color de fondo rojo claro */
+    color: #990000; /* Color de texto rojo oscuro */
+    font-weight: bold; /* Texto en negrita */
+    text-align: center; /* Centrar el texto */
+    padding: 10px; /* Espaciado interno */
+    border: 2px dashed #990000; /* Borde punteado */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-top: 15px; /* Separación superior */
+}
+
+.return-button {
+    display: block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #007BFF;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .return-button:hover {
+        background-color: #0056b3;
+    }
