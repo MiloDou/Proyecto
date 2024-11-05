@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     background-color: #FFF9F0;
-    
+    font-family: 'Times New Roman', Times, serif;
     /* Color de fondo claro para un contraste suave */
 }
 
@@ -14,7 +14,7 @@ main {
 }
 
 .h3{
-    color: black;
+    color: white;
 }
 
 /* Sidebar con un gradiente vertical, iniciando con azul oscuro y terminando en morado */
@@ -26,14 +26,16 @@ main {
 /* Barra superior (top-row) con fondo gris claro y borde inferior */
 .top-row {
     background-color: #081F5C;
-    border-bottom: 5px solid #BAD6EB; /* Borde gris claro para un sutil contorno */
+    border-bottom: 10px solid #fbaf2b; /* Borde gris claro para un sutil contorno */
     justify-content: flex-end;
     height: 3.5rem;
     display: flex;
     align-items: center;
     padding-left: 1rem;
 }
-
+    .top-row px-4 {
+        background-color: #FFF9F0;
+    }
     /* Estilos para los enlaces y botones en la barra superior, sin salto de línea */
     .top-row ::deep a, .top-row ::deep .btn-link {
         white-space: nowrap;
@@ -86,6 +88,7 @@ main {
         position: static;
         top: 0;
         z-index: 1;
+   
     }
 
         /* Ajuste para enlaces en la barra de autenticación */

@@ -6,15 +6,15 @@
 
 /* Fondo general de la página */
 body {
-    font-family: Georgia, serif;
+    font-family: 'Times New Roman', Times, serif;
     color: #333;
     background-color: #FFF9F0; /* Color de fondo de la página que se verá como borde alrededor del contenedor */
-    padding: 10px; /* Pequeño margen entre el borde de la ventana y el contenedor */
+    padding: 80px; /* Pequeño margen entre el borde de la ventana y el contenedor */
 }
 
 /* Configuración del contenedor principal */
 .container {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255,0.09 )), url('https://www.art.salon/images/carlos-merida_el-duende-amarillo_AID1092806.jpg?f=grey');
+    background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255,0.0 )), url('https://www.art.salon/images/carlos-merida_el-duende-amarillo_AID1092806.jpg?f=grey');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -34,26 +34,25 @@ body {
 header {
     text-align: center;
     margin-bottom: 60px;
+    letter-spacing: 3px;
 }
 
-.best-choice {
-    color: #f57c00;
-    font-size: 18px;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-    background-color: #FFF9F0;
-}
 
 .title {
-    font-size: 80px;
+
+    font-size: 70px;
     font-weight: bold;
     line-height: 1.25;
     color: #FFF9F0;
-    margin-bottom: 20px;
+    margin-top: 25px;
+    margin-bottom: 30px;
 }
 
     .title span.outline {
-        border: 5px solid #FFF9F0;
+        display: inline-block; /* Asegura que el span ocupe toda la línea */
+        margin-top: 40px; /* Espacio de 30px entre el título y el span */
+
+        border: 5px ridge #FFF9F0;
         padding: 5px 15px;
     }
 
@@ -67,7 +66,7 @@ header {
 }
 
     .search-bar input {
-        padding: 10px;
+        padding: 15px;
         font-size: 25px;
         width: 690px;
         border: 0px solid #ccc;
@@ -86,18 +85,3 @@ header {
         font-size: 25px;
     }
 
-/* Pie de página */
-footer {
-    text-align: center;
-    margin-top: 30px;
-}
-
-    footer p {
-        font-size: 14px;
-        color: #555;
-    }
-
-    footer .highlight {
-        color: #f57c00;
-        font-weight: bold;
-    }

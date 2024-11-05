@@ -3,75 +3,99 @@
 @using BlazorWebAppMovies.Models
 @using System.IO
 
-<h3>Gestionar Libros</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Libros</title>
+</head>
+<body>
+    <div class="container">
+      
+        
+        <EditForm Model="@nuevoLibro" OnValidSubmit="@GuardarLibro">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <label for="titulo">Título</label>
+            <div class="form-row">
+                <div class="input-data">
+                    <InputText id="titulo" class="form-control" @bind-Value="nuevoLibro.Titulo" required />
+                    
+                </div>
+                <label for="genero">Género</label>
+                <div class="input-data">
+                    <InputText id="genero" class="form-control" @bind-Value="nuevoLibro.Genero" required />
+                    
+                </div>
+            </div>
+            <label for="autor">Autor</label>
+            <div class="form-row">
+                <div class="input-data">
+                    <InputText id="autor" class="form-control" @bind-Value="nuevoLibro.Autor" required />
+                    
+                </div>
+                <label for="isbn">ISBN</label>
+                <div class="input-data">
+                    <InputText id="isbn" class="form-control" @bind-Value="nuevoLibro.ISBN" required />
+                    
+                </div>
+            </div>
 
-<EditForm Model="@nuevoLibro" OnValidSubmit="@GuardarLibro">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+            <div class="form-row">
+                <div class="input-data">
+                    <label for="estado">Disponible para Préstamo:</label>
+                    <InputCheckbox id="estado" @bind-Value="nuevoLibro.DisponiblePrestamo" />
+                </div>
+                <div class="input-data">
+                    <label for="portada">Portada:</label>
+                    <InputFile id="portada" OnChange="@(async e => await SubirPortada(e))" />
+                </div>
+            </div>
 
-    <div>
-        <label for="titulo">Título:</label>
-        <InputText id="titulo" @bind-Value="nuevoLibro.Titulo" />
-    </div>
-    <div>
-        <label for="Genero">Genero:</label>
-        <InputText id="titulo" @bind-Value="nuevoLibro.Genero" />
-    </div>
-    <div>
-        <label for="autor">Autor:</label>
-        <InputText id="autor" @bind-Value="nuevoLibro.Autor" />
-    </div>
-    dotnet
-    <div>
-        <label for="isbn">ISBN:</label>
-        <InputText id="isbn" @bind-Value="nuevoLibro.ISBN" />
-    </div>
-
-    <div>
-        <label for="estado">Disponible para Préstamo:</label>
-        <InputCheckbox id="estado" @bind-Value="nuevoLibro.DisponiblePrestamo" />
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <button type="submit" class="btn effect01">
+                        <span>Guardar</span>
+                    </button>
+                </div>
+            </div>
+        </EditForm>
     </div>
 
-    <div>
-        <label for="portada">Portada:</label>
-        <InputFile OnChange="@(async e => await SubirPortada(e))" />
-    </div>
-
-    <button type="submit">Guardar</button>
-</EditForm>
-
-@if (libros != null)
-{
-    <h3>Lista de Libros</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Título</th>
-                <th>Autor</th>
-                <th>ISBN</th>
-                <th>Disponible para Préstamo</th>
-                <th>Portada</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var libro in libros)
-            {
+    @if (libros != null)
+    {
+        <table>
+            <thead>
                 <tr>
-                    <td>@libro.Titulo</td>
-                    <td>@libro.Autor</td>
-                    <td>@libro.ISBN</td>
-                    <td>@(libro.DisponiblePrestamo ? "Sí" : "No")</td>
-                    <td>
-                        @if (libro.Portada != null)
-                        {
-                            <img src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Portada del libro" width="100" height="150" />
-                        }
-                    </td>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>ISBN</th>
+                    <th>Disponible para Préstamo</th>
+                    <th>Portada</th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
+            </thead>
+            <tbody>
+                @foreach (var libro in libros)
+                {
+                    <tr>
+                        <td>@libro.Titulo</td>
+                        <td>@libro.Autor</td>
+                        <td>@libro.ISBN</td>
+                        <td>@(libro.DisponiblePrestamo ? "Sí" : "No")</td>
+                        <td>
+                            @if (libro.Portada != null)
+                            {
+                                <img src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Portada del libro" width="100" height="150" />
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</body>
+</html>
 
 @code {
     private Libro nuevoLibro = new Libro();

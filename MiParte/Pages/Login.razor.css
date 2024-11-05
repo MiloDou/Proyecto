@@ -1,71 +1,103 @@
-﻿/* Estilos generales */
+﻿/* Colors and Fonts */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    background-color: rgba(244, 91, 105, 1); /* Red Fire */
+    font-family: 'Times New Roman', sans-serif;
+    background-image: url('https://www.art.salon/images/carlos-merida_espectro-en-rojo_AID510095.jpg?f=grey');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-.login-container {
-    background-color: #fff;
-    padding: 40px;
+.login {
+    background-image: url('https://www.art.salon/images/carlos-merida_espectro-en-rojo_AID510095.jpg?f=grey');
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9); /* White with slight opacity */
+    padding: 40px 30px 30px 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    transform: translate(-50%, -50%);
+    transition: transform 300ms, box-shadow 300ms;
+    box-shadow: 5px 10px 10px rgba(2, 128, 144, 0.2);
+    color: black; /* Green Seaweed with opacity */
 }
 
-.login-title {
-    color: #333;
-    margin-bottom: 30px;
-}
-
-.form-group {
-    width: 100%;
-    margin-bottom: 20px; /* Agrega espacio entre los inputs */
-}
-
-.form-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-    text-align: left;
-}
-
-.form-input {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #333;
-    box-sizing: border-box;
-}
-
-/* Botón de login con hover */
-.login-button {
-    display: block;
-    width: 13%;
-    padding: 10px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-    .login-button:hover {
-        background-color: #0056b3;
+    .login::before, .login::after {
+        content: '';
+        position: absolute;
+        width: 800px;
+        height: 800px;
+        border-top-left-radius: 40%;
+        border-top-right-radius: 45%;
+        border-bottom-left-radius: 35%;
+        border-bottom-right-radius: 40%;
+        z-index: -1;
     }
 
-/* Estilos para el mensaje de error */
-.error-message {
-    color: red;
-    margin-top: 10px;
+    .login::before {
+        left: 40%;
+        bottom: -130%;
+        background-color: rgba(69, 105, 144, 0.15); /* Blue Queen with opacity */
+        animation: waves 6s infinite linear;
+    }
+
+    .login::after {
+        left: 35%;
+        bottom: -125%;
+        background-color: rgba(2, 128, 144, 0.2); /* Green Seaweed with opacity */
+        animation: waves 7s infinite linear;
+    }
+
+    .login input {
+        font-family: 'Times New Roman', sans-serif;
+        display: block;
+        border-radius: 5px;
+        font-size: 16px;
+        background: white;
+        width: 100%;
+        border: 0;
+        padding: 10px 10px;
+        margin: 15px -10px;
+    }
+
+    .login button {
+        font-family: 'Times New Roman', sans-serif;
+        cursor: progress    ;
+        color: #fff;
+        font-size: 16px;
+        text-transform: uppercase;
+        width: 160px;
+        border: 0;
+        padding: 10px 0;
+        margin-top: 10px;
+        margin-left: -5px;
+        border-radius: 5px;
+        background-color: rgba(244, 91, 105, 1); /* Red Fire */
+        transition: background-color 300ms;
+    }
+
+        .login button:hover {
+            background-color: rgba(200, 75, 85, 1); /* Darkened Red Fire */
+        }
+
+@keyframes waves {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6); /* White with opacity */
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
 }
