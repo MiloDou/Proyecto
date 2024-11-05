@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     background-color: #FFF9F0;
-    
+    font-family: 'Times New Roman', Times, serif;
     /* Color de fondo claro para un contraste suave */
 }
 
