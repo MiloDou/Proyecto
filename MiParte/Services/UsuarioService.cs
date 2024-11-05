@@ -17,6 +17,11 @@ public class UsuarioService
         response.EnsureSuccessStatusCode();
     }
 
+    public async Task<IEnumerable<Usuario>> ObtenerUsuariosAsync()
+    {
+        return await _httpClient.GetFromJsonAsync<IEnumerable<Usuario>>("api/Usuarios");
+    }
+
     public async Task<Usuario> LoginAsync(Usuario usuario)
     {
         var response = await _httpClient.PostAsJsonAsync("api/Usuarios/login", usuario);
@@ -28,4 +33,16 @@ public class UsuarioService
 
         return await response.Content.ReadFromJsonAsync<Usuario>();
     }
+    public async Task EliminarUsuarioAsync(int id)
+    {
+        var response = await _httpClient.DeleteAsync($"api/Usuarios/{id}");
+        response.EnsureSuccessStatusCode();
+    }
+    public async Task ActualizarUsuarioAsync(Usuario usuario)
+    {
+        var response = await _httpClient.PutAsJsonAsync($"api/usuarios/{usuario.IdUsuario}", usuario);
+        response.EnsureSuccessStatusCode();
+    }
+    
+
 }

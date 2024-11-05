@@ -1,6 +1,7 @@
 ﻿@page "/loginadmin"
 @inject UsuarioService usuarioService
 @inject NavigationManager navigationManager
+@inject AuthenticationStateProviderService authStateProvider
 @using MiParte.Models;
 
 <h3>Login Administrador</h3>
@@ -36,14 +37,16 @@
         try
         {
             var loggedInUser = await usuarioService.LoginAsync(adminLogin);
-            if (loggedInUser.IsAdmin)
+
+            if (loggedInUser != null && loggedInUser.IsAdmin)
             {
-                navigationManager.NavigateTo("/crearusuario");
+                // Marcar al usuario como autenticado y redirigir
+                authStateProvider.MarkUserAsAuthenticated(loggedInUser);
+                navigationManager.NavigateTo("/gestionarusuarios");
             }
             else
             {
                 errorMessage = "No tienes permisos de administrador.";
-                navigationManager.NavigateTo("/gestionarusuarios");
             }
         }
         catch (Exception ex)

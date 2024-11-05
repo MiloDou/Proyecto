@@ -8,6 +8,7 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:5101/") });
+
 builder.Services.AddScoped<LibroService>();
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<AuthenticationStateProviderService>();
