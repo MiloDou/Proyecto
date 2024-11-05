@@ -24,7 +24,8 @@ public class AuthenticationStateProviderService : AuthenticationStateProvider
         var identity = _currentUser != null
             ? new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, _currentUser.Username)
+                new Claim(ClaimTypes.Name, _currentUser.Username),
+                new Claim(ClaimTypes.Role, _currentUser.IsAdmin ? "Admin" : "User")
             }, "apiauth")
             : new ClaimsIdentity();
 

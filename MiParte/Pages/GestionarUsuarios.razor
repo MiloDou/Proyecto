@@ -1,5 +1,11 @@
 ﻿@page "/GestionarUsuarios"
+@inject UsuarioService usuarioService
 @inject NavigationManager navigationManager
+@inject AuthenticationStateProviderService authStateProvider
+@using MiParte.Models
+@using System.Security.Claims;
+
+
 
 <div class="container-xl">
     <div class="table-responsive">
@@ -10,8 +16,8 @@
                         <h2>Gestión de <b>Usuarios</b></h2>
                     </div>
                     <div class="col-sm-7">
-                        <NavLink class="nav-link" href="/loginadmin">
-                            <button class="btn btn-secondary"><h6>Nuevo usuario></h6></button>
+                        <NavLink class="nav-link" href="/crearusuario">
+                            <button class="btn btn-secondary"><h6>Nuevo usuario</h6></button>
                         </NavLink>
                     </div>
                 </div>
@@ -20,109 +26,117 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Date Created</th>
-                        <th>Role</th>
-                        <th>Status</th>
+                        <th>Username</th>
+                        <th>IsAdmin</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var usuario in Usuarios)
                     {
-                            <tr>
-                                <td>@usuario.Id</td>
-                                <td><a href="#"><img src="@usuario.AvatarUrl" class="avatar" alt="Avatar"> @usuario.Nombre</a></td>
-                                <td>@usuario.FechaCreacion.ToString("MM/dd/yyyy")</td>
-                                <td>@usuario.Rol</td>
-                                <td><span class="status @(usuario.Activo ? "text-success" : "text-warning")">&bull;</span> @(usuario.Activo ? "Active" : "Inactive")</td>
-                                <td>
-                                    <button class="btn btn-info" @onclick="() => VerDetallesUsuario(usuario)">Ver detalles</button>
-                                    <button class="btn btn-danger" @onclick="() => ConfirmarEliminar(usuario)">Eliminar</button>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>@usuario.IdUsuario</td>
+                            <td>@usuario.Username</td>
+                            <td>@(usuario.IsAdmin ? "Admin" : "Usuario")</td>
+                            <td>
+                                <button class="btn btn-info" @onclick="() => EditarUsuario(usuario.IdUsuario)">Editar</button>
+                                <button class="btn btn-danger" @onclick="() => ConfirmarEliminar(usuario.IdUsuario)">Eliminar</button>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
+            @if (mostrandoFormularioEdicion)
+            {
+                <h3>Editar Usuario</h3>
+                <EditForm Model="@usuarioEnEdicion" OnValidSubmit="@GuardarCambios">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <InputText id="username" @bind-Value="usuarioEnEdicion.Username" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isAdmin">Is Admin:</label>
+                        <InputCheckbox id="isAdmin" @bind-Value="usuarioEnEdicion.IsAdmin" class="form-control" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    <button type="button" class="btn btn-secondary" @onclick="CancelarEdicion">Cancelar</button>
+                </EditForm>
+            }
         </div>
     </div>
 </div>
 
-@if (MostrarFormulario)
-{
-        <div class="modal">
-            <div class="modal-content">
-                <h3>Agregar Nuevo Usuario</h3>
-                <label>Nombre:</label>
-                <input type="text" @bind="NuevoUsuario.Nombre" class="form-control" />
-                <label>Rol:</label>
-                <input type="text" @bind="NuevoUsuario.Rol" class="form-control" placeholder="Ejemplo: Usuario, Admin" />
-                <label>Avatar URL:</label>
-                <input type="text" @bind="NuevoUsuario.AvatarUrl" class="form-control" placeholder="URL de imagen" />
-                <label>Estado:</label>
-                <select @bind="NuevoUsuario.Activo" class="form-control">
-                    <option value="true">Activo</option>
-                    <option value="false">Inactivo</option>
-                </select>
-                <button class="btn btn-primary" @onclick="AgregarUsuario">Agregar</button>
-                <button class="btn btn-secondary" @onclick="CerrarFormulario">Cancelar</button>
-            </div>
-        </div>
-}
-
 @code {
-    public class Usuario
+    private List<Usuario> Usuarios = new List<Usuario>();
+    private bool isAdmin;
+    private Usuario usuarioEnEdicion = null; // Para almacenar el usuario en edición
+    private bool mostrandoFormularioEdicion = false;
+    protected override async Task OnInitializedAsync()
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Rol { get; set; }
-        public string AvatarUrl { get; set; }
-        public DateTime FechaCreacion { get; set; }
-        public bool Activo { get; set; }
-    }
+        // Obtén el estado de autenticación actual
+        var authState = await authStateProvider.GetAuthenticationStateAsync();
+        isAdmin = authState.User.Identity?.IsAuthenticated == true && authState.User.Claims.Any(c => c.Type == ClaimTypes.Role && c.Value == "Admin");
 
-    private List<Usuario> Usuarios = new List<Usuario>
-    {
-        new Usuario { Id = 2, Nombre = "Carlos Hugo", Rol = "Admin", AvatarUrl = "https://avatars.githubusercontent.com/u/158307619?v=4", FechaCreacion = new DateTime(2024, 3, 11), Activo = false },
-        // Agrega más usuarios según sea necesario
-    };
-
-    private bool MostrarFormulario = false;
-    private Usuario NuevoUsuario = new Usuario();
-
-    private void MostrarFormularioAgregar()
-    {
-        MostrarFormulario = true;
-        NuevoUsuario = new Usuario
-            {
-                Id = Usuarios.Count > 0 ? Usuarios.Max(u => u.Id) + 1 : 1, // Asigna un ID único al nuevo usuario
-                FechaCreacion = DateTime.Now
-            };
-    }
-
-    private void CerrarFormulario()
-    {
-        MostrarFormulario = false;
-    }
-
-    private void AgregarUsuario()
-    {
-        if (!string.IsNullOrWhiteSpace(NuevoUsuario.Nombre))
+        // Si no es administrador, redirige a LoginAdmin
+        if (!isAdmin)
         {
-            Usuarios.Add(NuevoUsuario);
-            NuevoUsuario = new Usuario(); // Reinicia el objeto para futuras entradas
-            MostrarFormulario = false;
+            navigationManager.NavigateTo("/loginadmin");
+            return;
+        }
+
+        // Si es administrador, carga los usuarios
+        var usuarios = await usuarioService.ObtenerUsuariosAsync();
+        Usuarios = usuarios?.ToList() ?? new List<Usuario>();
+    }
+
+    private void EditarUsuario(int id)
+    {
+        usuarioEnEdicion = Usuarios.FirstOrDefault(u => u.IdUsuario == id);
+        if (usuarioEnEdicion != null)
+        {
+            mostrandoFormularioEdicion = true;
         }
     }
 
-    private void VerDetallesUsuario(Usuario usuario)
+    private async Task GuardarCambios()
     {
-        // Lógica para mostrar detalles del usuario
-        Console.WriteLine($"Detalles del usuario: {usuario.Nombre}");
+        if (usuarioEnEdicion != null)
+        {
+            try
+            {
+                await usuarioService.ActualizarUsuarioAsync(usuarioEnEdicion);
+                mostrandoFormularioEdicion = false;
+                usuarioEnEdicion = null;
+
+                // Recargar la lista de usuarios desde el servidor después de guardar cambios
+                var usuarios = await usuarioService.ObtenerUsuariosAsync();
+                Usuarios = usuarios?.ToList() ?? new List<Usuario>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al actualizar usuario: {ex.Message}");
+            }
+        }
     }
 
-    private void ConfirmarEliminar(Usuario usuario)
+    private void CancelarEdicion()
     {
-        // Lógica para confirmar eliminación
+        mostrandoFormularioEdicion = false;
+        usuarioEnEdicion = null;
+    }
+
+    private async Task ConfirmarEliminar(int id)
+    {
+        var usuario = Usuarios.FirstOrDefault(u => u.IdUsuario == id);
+        if (usuario != null)
+        {
+            Usuarios.Remove(usuario);
+            await usuarioService.EliminarUsuarioAsync(id); // Llama al servicio para eliminar del servidor
+        }
     }
 }
