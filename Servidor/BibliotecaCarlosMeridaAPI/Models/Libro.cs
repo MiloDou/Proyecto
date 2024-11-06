@@ -12,8 +12,5 @@ namespace BibliotecaCarlosMeridaAPI.Models
         [Required] public int VecesPrestado { get; set; }
         public bool DisponiblePrestamo { get; set; }
         public byte[] Portada { get; set; }
-
-        public string PrestadoA { get; set; }
-        public DateTime? FechaPrestamo { get; set; }
     }
 }

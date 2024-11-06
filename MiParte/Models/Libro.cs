@@ -14,7 +14,5 @@ namespace BlazorWebAppMovies.Models
         public bool DisponiblePrestamo { get; set; }
         public byte[] Portada { get; set; }
 
-        public string PrestadoA { get; set; }
-        public DateTime? FechaPrestamo { get; set; }
     }
 }

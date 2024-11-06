@@ -93,7 +93,7 @@ else
     {
         try
         {
-            libro.VecesPrestado = libro.VecesPrestado + 1;
+            libro.VecesPrestado += 1;
 
             libro.DisponiblePrestamo = false;
             await libroService.ActualizarLibroAsync(libro);

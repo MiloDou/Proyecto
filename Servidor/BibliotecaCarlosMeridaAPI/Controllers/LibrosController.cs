@@ -99,7 +99,7 @@ public class LibrosController : ControllerBase
 
         // Actualizar el estado de DisponiblePrestamo
         libroExistente.DisponiblePrestamo = libro.DisponiblePrestamo;
-
+        libroExistente.VecesPrestado = libro.VecesPrestado;
         try
         {
             await _context.SaveChangesAsync();
