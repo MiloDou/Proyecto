@@ -120,6 +120,25 @@ section {
     display: flex;
 }
 
+
+.btn-agregar {
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 15px;
+    padding: 13px 15px;
+    background-image: url('https://img.freepik.com/fotos-premium/fondo-abstracto-acuarela-textura-beige-acuarela_829251-230.jpg?w=826'); /* Reemplaza 'URL_DE_LA_IMAGEN' con la URL de la imagen */
+    background-size: cover;
+    background-position: center;
+    color: #333;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+    font-size: 1rem;
+    text-align: center;
+}
+
 .carousel__slide {
     position: relative;
     display: block;
