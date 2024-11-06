@@ -63,6 +63,30 @@ public class LibroService
         }
     }
 
+
+    public async Task ActualizarLibroAsync(Libro libro)
+    {
+        try
+        {
+            var response = await _httpClient.PutAsJsonAsync($"api/Libros/{libro.IdLibro}", libro);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Error al actualizar el estado del libro.");
+                throw new Exception("Error al actualizar el estado del libro.");
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error al actualizar libro: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error inesperado: {ex.Message}");
+        }
+    }
+
+
     // Método para obtener los libros más populares (llamando a la API)
     public async Task<List<Libro>> GetLibrosPopulares(int cantidad)
     {

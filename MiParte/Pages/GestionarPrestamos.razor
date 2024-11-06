@@ -12,55 +12,66 @@
     </select>
 </div>
 
-@if (!string.IsNullOrEmpty(errorMessage))
+@if (isLoading)
 {
-        <div class="error-message">
-            <p>@errorMessage</p>
-        </div>
+    <p>Cargando libros...</p>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="error-message">
+        <p>@errorMessage</p>
+    </div>
 }
 else
 {
-        <ol style="--length: @Libros?.Count ?? 0" role="list">
+    <ol style="--length: @Libros?.Count ?? 0" role="list">
         @if (Libros != null)
         {
             @foreach (var libro in Libros)
             {
-                            <li style="display: flex; justify-content: space-between; align-items: flex; margin-bottom: 40px;">
-                                <div>
-                                    <h3>@libro.Titulo</h3>
-                                    <p style="color: black;"><strong>Autor:</strong> @libro.Autor</p>
-                                    <p style="color: black;"><strong>Género:</strong> @libro.Genero</p>
-                                    <p style="color: black;"><strong>ISBN:</strong> @libro.ISBN</p>
+                <li style="display: flex; justify-content: space-between; align-items: flex; margin-bottom: 40px;">
+                    <div>
+                        <h3>@libro.Titulo</h3>
+                        <p style="color: black;"><strong>Autor:</strong> @libro.Autor</p>
+                        <p style="color: black;"><strong>Género:</strong> @libro.Genero</p>
+                        <p style="color: black;"><strong>ISBN:</strong> @libro.ISBN</p>
 
-                                    <button class="button" @onclick="() => PrestarLibro(libro)">
-                                        Prestar libro
-                                    </button>
-                                    <button class="button" @onclick="() => EliminarLibro(libro)">
-                                        Devolver libro
-                                    </button>
-                                </div>
-                                <div>
+                        @if (libro.DisponiblePrestamo)
+                        {
+                            <button class="button" @onclick="() => PrestarLibro(libro)">
+                                Prestar libro
+                            </button>
+                        }
+                        else
+                        {
+                            <button class="button" @onclick="() => DevolverLibro(libro)">
+                                Devolver libro
+                            </button>
+                        }
+                    </div>
+                    <div>
                         @if (libro.Portada != null)
                         {
-                                            <img src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Imagen de @libro.Titulo" class="book-cover">
+                            <img src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Imagen de @libro.Titulo" class="book-cover">
                         }
-                                </div>
-                            </li>
+                    </div>
+                </li>
             }
         }
-        </ol>
+    </ol>
 
     @if (Libros == null || Libros.Count == 0)
     {
-                <div id="mensaje-vacio" class="sin-elementos">
-                    <h2>No hay más libros prestados.</h2>
-                </div>
+        <div id="mensaje-vacio" class="sin-elementos">
+            <h2>No hay más libros prestados.</h2>
+        </div>
     }
 }
 
 @code {
     private List<Libro> Libros;
     private string errorMessage;
+    private bool isLoading = true;
 
     protected override async Task OnInitializedAsync()
     {
@@ -72,28 +83,40 @@ else
         {
             errorMessage = $"Error al cargar los libros: {ex.Message}";
         }
-    }
-
-    private void EliminarLibro(Libro libro)
-    {
-        if (Libros.Contains(libro))
+        finally
         {
-            Libros.Remove(libro); // Elimina el libro de la lista
+            isLoading = false;
         }
-        StateHasChanged(); // Actualiza la vista para reflejar el cambio
     }
 
-    private void PrestarLibro(Libro libro)
+    private async Task PrestarLibro(Libro libro)
     {
-        // Implementar la lógica de préstamo del libro
-        // Cambiar el estado de préstamo o mover el libro a otra lista
-        libro.DisponiblePrestamo = false; // Ejemplo de actualización de estado
-        StateHasChanged();
+        try
+        {
+            libro.VecesPrestado = libro.VecesPrestado + 1;
+
+            libro.DisponiblePrestamo = false;
+            await libroService.ActualizarLibroAsync(libro);
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al prestar el libro: {ex.Message}";
+        }
     }
 
-    private void VerDetalles(Libro libro)
+    private async Task DevolverLibro(Libro libro)
     {
-     
+        try
+        {
+            libro.DisponiblePrestamo = true;
+            await libroService.ActualizarLibroAsync(libro);
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error al devolver el libro: {ex.Message}";
+        }
     }
 
     private void SortLibros(ChangeEventArgs e)
@@ -118,6 +141,6 @@ else
                 break;
         }
 
-        StateHasChanged(); // Actualiza la vista para reflejar el cambio de orden
+        StateHasChanged();
     }
 }

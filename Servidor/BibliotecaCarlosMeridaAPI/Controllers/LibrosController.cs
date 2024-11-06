@@ -82,5 +82,37 @@ public class LibrosController : ControllerBase
         return Ok(libros);
     }
 
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> ActualizarLibro(int id, Libro libro)
+    {
+        if (id != libro.IdLibro)
+        {
+            return BadRequest("El ID del libro no coincide.");
+        }
+
+        var libroExistente = await _context.Libros.FindAsync(id);
+        if (libroExistente == null)
+        {
+            return NotFound("Libro no encontrado.");
+        }
+
+        // Actualizar el estado de DisponiblePrestamo
+        libroExistente.DisponiblePrestamo = libro.DisponiblePrestamo;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException ex)
+        {
+            Console.WriteLine($"Error al actualizar el libro: {ex.Message}");
+            return StatusCode(500, "Error interno del servidor");
+        }
+
+        return NoContent();
+    }
+
+
 }
 
