@@ -1,5 +1,8 @@
 ﻿@page "/"
 @using System.Collections.Generic
+@using BlazorWebAppMovies.Services
+@inject LibroService libroService
+
 
 <PageTitle>Home</PageTitle>
 
@@ -16,15 +19,36 @@
             <button @onclick="PerformSearch">→</button>
         </div>
     </header>
+    <div class="card-container">
+        @if (librosBuscados != null && librosBuscados.Any())
+        {
+            @foreach (var libro in librosBuscados)
+            {
+                <div class="card">
+                    <img src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Portada del libro" />
+                    <h2>@libro.Titulo</h2>
+                    <p><strong>Autor:</strong> @libro.Autor</p>
+                    <p><strong>ISBN:</strong> @libro.ISBN</p>
+                    <p><strong>Género:</strong> @libro.Genero</p>
+                    <p><strong>Disponible:</strong> @(libro.DisponiblePrestamo ? "Sí" : "No")</p>
+                </div>
+            }
+        }
+        else
+        {
+            <p>No se encontraron resultados.</p>
+        }
+    </div>
 </div>
 
 @code {
-    private string searchQuery = "";  // Término de búsqueda ingresado
+    private List<Libro> librosEncontrados = new List<Libro>();
 
-    // Método para realizar la búsqueda (se ejecuta al presionar el botón)
-    private void PerformSearch()
+    private string searchQuery = "";
+    private List<Libro> librosBuscados;
+
+    private async Task PerformSearch()
     {
-        // Aquí podrías redirigir a una página de resultados con el término `searchQuery` seleccionado
-        // Por ejemplo: NavigationManager.NavigateTo($"/results?query={searchQuery}");
+        librosBuscados = (await libroService.BuscarLibrosAsync(searchQuery)).ToList();
     }
 }

@@ -46,5 +46,21 @@ public class LibrosController : ControllerBase
             return StatusCode(500, "Error interno del servidor");
         }
     }
+
+    [HttpGet("buscar")]
+    public async Task<ActionResult<IEnumerable<Libro>>> BuscarLibros(string query)
+    {
+        if (string.IsNullOrEmpty(query))
+        {
+            return await GetLibros();
+        }
+
+        var libros = await _context.Libros
+            .Where(l => l.Titulo.Contains(query) || l.Autor.Contains(query) || l.ISBN.Contains(query))
+            .ToListAsync();
+
+        return Ok(libros);
+    }
+
 }
 

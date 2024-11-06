@@ -50,5 +50,19 @@ public class LibroService
             Console.WriteLine($"Error inesperado: {ex.Message}");
         }
     }
+    public async Task<IEnumerable<Libro>> BuscarLibrosAsync(string query)
+    {
+        try
+        {
+            // Llama a la API con el término de búsqueda en la URL
+            return await _httpClient.GetFromJsonAsync<IEnumerable<Libro>>($"api/Libros/buscar?query={query}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error al buscar libros: {ex.Message}");
+            return Enumerable.Empty<Libro>();
+        }
+    }
+
 }
 

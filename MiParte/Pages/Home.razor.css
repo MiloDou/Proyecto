@@ -37,6 +37,36 @@ header {
     letter-spacing: 3px;
 }
 
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.card {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .card img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
+
+.search-bar {
+    display: flex;
+    gap: 0.5rem;
+}
+
+button {
+    cursor: pointer;
+}
+
 
 .title {
 
@@ -55,6 +85,9 @@ header {
         border: 5px ridge #FFF9F0;
         padding: 5px 15px;
     }
+
+
+
 
 /* Barra de búsqueda */
 .search-bar {
