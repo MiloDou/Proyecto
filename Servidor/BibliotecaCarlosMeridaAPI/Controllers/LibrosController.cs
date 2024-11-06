@@ -4,6 +4,7 @@ using BibliotecaCarlosMeridaAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
 [Route("api/[controller]")]
 [ApiController]
 public class LibrosController : ControllerBase
@@ -29,6 +30,25 @@ public class LibrosController : ControllerBase
             return StatusCode(500, "Error interno del servidor");
         }
     }
+    [HttpGet("populares")]
+    public async Task<ActionResult<IEnumerable<Libro>>> GetLibrosPopulares(int cantidad)
+    {
+        try
+        {
+            var librosPopulares = await _context.Libros
+                .OrderByDescending(l => l.VecesPrestado)
+                .Take(cantidad)
+                .ToListAsync();
+            return Ok(librosPopulares);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al obtener libros populares: {ex.Message}");
+            return StatusCode(500, "Error interno del servidor");
+        }
+    }
+
+
 
     [HttpPost]
     public async Task<ActionResult<Libro>> PostLibro(Libro libro)

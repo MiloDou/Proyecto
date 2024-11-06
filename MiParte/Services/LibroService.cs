@@ -1,6 +1,8 @@
 ﻿using BlazorWebAppMovies.Models;
-using BlazorWebAppMovies.Services;
+using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -22,13 +24,11 @@ public class LibroService
         }
         catch (HttpRequestException ex)
         {
-            // Manejar error HTTP
             Console.WriteLine($"Error al obtener libros: {ex.Message}");
             return Enumerable.Empty<Libro>();
         }
         catch (Exception ex)
         {
-            // Manejar cualquier otro error
             Console.WriteLine($"Error inesperado: {ex.Message}");
             return Enumerable.Empty<Libro>();
         }
@@ -42,20 +42,18 @@ public class LibroService
         }
         catch (HttpRequestException ex)
         {
-            // Manejar error HTTP
             Console.WriteLine($"Error al agregar libro: {ex.Message}");
         }
         catch (Exception ex)
         {
-            // Manejar cualquier otro error
             Console.WriteLine($"Error inesperado: {ex.Message}");
         }
     }
+
     public async Task<IEnumerable<Libro>> BuscarLibrosAsync(string query)
     {
         try
         {
-            // Llama a la API con el término de búsqueda en la URL
             return await _httpClient.GetFromJsonAsync<IEnumerable<Libro>>($"api/Libros/buscar?query={query}");
         }
         catch (HttpRequestException ex)
@@ -64,8 +62,19 @@ public class LibroService
             return Enumerable.Empty<Libro>();
         }
     }
-   
 
+    // Método para obtener los libros más populares (llamando a la API)
+    public async Task<List<Libro>> GetLibrosPopulares(int cantidad)
+    {
+        try
+        {
+            return await _httpClient.GetFromJsonAsync<List<Libro>>($"api/Libros/populares?cantidad={cantidad}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error al obtener libros populares: {ex.Message}");
+            return new List<Libro>();
+        }
+    }
 
 }
-

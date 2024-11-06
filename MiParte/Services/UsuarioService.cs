@@ -43,6 +43,5 @@ public class UsuarioService
         var response = await _httpClient.PutAsJsonAsync($"api/usuarios/{usuario.IdUsuario}", usuario);
         response.EnsureSuccessStatusCode();
     }
-    
 
 }

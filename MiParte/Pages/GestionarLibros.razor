@@ -1,143 +1,69 @@
 ﻿@page "/GestionarLibros"
+@inject LibroService libroService
 
 <section>
     <div class="container">
+        <h2 style ="color: #333333;">Libros más prestados</h2>
         <div class="carousel">
-            <input type="radio" name="slides" checked="checked" id="slide-1">
-            <input type="radio" name="slides" id="slide-2">
-            <input type="radio" name="slides" id="slide-3">
-            <input type="radio" name="slides" id="slide-4">
-            <input type="radio" name="slides" id="slide-5">
-            <input type="radio" name="slides" id="slide-6">
+            @foreach (var libro in librosPopulares)
+            {
+                <input type="radio" name="slides" id="slide-@libro.IdLibro" checked="@(libro == librosPopulares.First())" />
+            }
+
             <ul class="carousel__slides">
-                <li class="carousel__slide">
-                    <figure>
-                        <div class="book-info">
-                            <img class="book-cover" src="https://sarasvatilibreria.com/cdn/shop/products/la-insoportable-levedad-del-ser-milan-kundera-288947.jpg?v=1698902769" alt="Book Cover">
-                            <div class="book-details">
-                                <p><strong>Libro:</strong> Insoportable levedad del ser</p>
-                                <p><strong>Autor:</strong> Milan Kundera</p>
-                                <p><strong>Género:</strong> Literatura clásica</p>
-                                <p><strong>ISBN:</strong> 1</p>
-                                <button class="btn-prestar" @onclick="() => PrestarLibro(1)"><h2><strong>Prestar libro</strong></h2></button>
+                @foreach (var libro in librosPopulares)
+                {
+                    <li class="carousel__slide">
+                        <figure>
+                            <div class="book-info">
+                                <img class="book-cover" src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Book Cover">
+                                <div class="book-details">
+                                    <p><strong>Libro:</strong> @libro.Titulo</p>
+                                    <p><strong>Autor:</strong> @libro.Autor</p>
+                                    <p><strong>Género:</strong> @libro.Genero</p>
+                                    <p><strong>ISBN:</strong> @libro.ISBN</p>
+                                    <p><strong>Veces Prestado:</strong> @libro.VecesPrestado</p>
+                                </div>
                             </div>
-                        </div>
-                    </figure>
-                </li>
-
-                <li class="carousel__slide">
-                    <figure>
-                        <div class="book-info">
-                            <img class="book-cover" src="https://www.agenciabalcells.com/fileadmin/_processed_/csm_Obra_cri__tica_81042aff9a.jpg" alt="Book Cover">
-                            <div class="book-details">
-                                <p><strong>Libro:</strong> Obra crítica</p>
-                                <p><strong>Autor:</strong> Julio Córtazar</p>
-                                <p><strong>Género:</strong> Literatura clásica</p>
-                                <p><strong>ISBN:</strong> 2</p>
-                                <button class="btn-prestar" @onclick="() => PrestarLibro(2)"><h2><strong>Prestar libro</strong></h2></button>
-                            </div>
-                        </div>
-                    </figure>
-                </li>
-
-                <li class="carousel__slide">
-                    <figure>
-                        <div class="book-info">
-                            <img class="book-cover" src="https://images.ecestaticos.com/rL51F3G5AHmet43UBomSJW4DtW0=/0x85:484x742/1440x1920/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F2b7%2F501%2F34c%2F2b750134ce95a522bbe966166af35d22.jpg" alt="Book Cover">
-                            <div class="book-details">
-                                <p><strong>Libro:</strong> Historias de cronopios y de famas</p>
-                                <p><strong>Autor:</strong> Julio Córtazar</p>
-                                <p><strong>Género:</strong> Literatura clásica</p>
-                                <p><strong>ISBN:</strong> 3</p>
-                                <button class="btn-prestar" @onclick="() => PrestarLibro(3)"><h2><strong>Prestar libro</strong></h2></button>
-                            </div>
-                        </div>
-                    </figure>
-                </li>
-
-                <li class="carousel__slide">
-                    <figure>
-                        <div class="book-info">
-                            <img class="book-cover" src="https://scontent.fgua9-1.fna.fbcdn.net/v/t39.30808-6/242924204_4996611680352959_2789765760175543827_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_ohc=C6ezb7_FtEsQ7kNvgFx1PfZ&_nc_zt=23&_nc_ht=scontent.fgua9-1.fna&_nc_gid=Aw-4rmR2pjLqVY9lsJGJsxe&oh=00_AYCwl3MC5QNz-oky9jRHd2HtLqmyhLtULHNQ97AnVJkZUQ&oe=6726644D" alt="Book Cover">
-                            <div class="book-details">
-                                  <p><strong>Libro:</strong> Carlos Mérida en Guatemala</p>
-                                <p><strong>Autor:</strong> Academia Nacional de bellas artes</p>
-                                <p><strong>Género:</strong> Arte</p>
-                                <p><strong>ISBN:</strong> 4</p>     
-                                <button class="btn-prestar" @onclick="() => PrestarLibro(4)"><h2><strong>Prestar libro</strong></h2></button>
-                            </div>
-                        </div>
-                    </figure>
-                </li>
-
-                <li class="carousel__slide">
-                    <figure>
-                        <div class="book-info">
-                            <img class="book-cover" src="https://m.media-amazon.com/images/I/71+wn+9KJoL._AC_UF894,1000_QL80_.jpg" alt="Book Cover">
-                            <div class="book-details">
-                                <p><strong>Libro:</strong> El extranjero</p>
-                                <p><strong>Autor:</strong> Albert Camus</p>
-                                <p><strong>Género:</strong> Literatura clásica</p>
-                                <p><strong>ISBN:</strong> 5</p>
-                                <button class="btn-prestar" @onclick="() => PrestarLibro(5)"><h2><strong>Prestar libro</strong></h2></button>
-                            </div>
-                        </div>
-                    </figure>
-                </li>
-
-                <li class="carousel__slide">
-                    <figure>
-                        <div class="book-info">
-                            <img class="book-cover" src="https://cdn-icons-png.flaticon.com/512/6324/6324880.png" alt="Book Cover">
-                            <div class="book-details">
-                                <p><strong>Nuevo Libro</strong></p>
-                                <p><strong></strong></p>
-                                <p><strong></strong></p>
-                                <NavLink class="nav-link" href="/libros" >
-                                    <button class="btn-prestar" @onclick="AbrirAgregarLibro"><h2>Agregar Libro</h2></button>
-                                </NavLink>
-                            </div>
-                        </div>
-                    </figure>
-                </li>
+                        </figure>
+                    </li>
+                }
             </ul>
+            <NavLink class="nav-link" href="/libros">
+                <button class="btn-prestar"><h2>Agregar Libro</h2></button>
+            </NavLink>
+
             <ul class="carousel__thumbnails">
-                <li>
-                    <label for="slide-1"><img src="https://sarasvatilibreria.com/cdn/shop/products/la-insoportable-levedad-del-ser-milan-kundera-288947.jpg?v=1698902769" alt=""></label>
-                </li>
-                <li>
-                    <label for="slide-2"><img src="https://www.agenciabalcells.com/fileadmin/_processed_/csm_Obra_cri__tica_81042aff9a.jpg" alt=""></label>
-                </li>
-                <li>
-                    <label for="slide-3"><img src="https://images.ecestaticos.com/rL51F3G5AHmet43UBomSJW4DtW0=/0x85:484x742/1440x1920/filters:fill(white):format(jpg)/f.elconfidencial.com%2Foriginal%2F2b7%2F501%2F34c%2F2b750134ce95a522bbe966166af35d22.jpg" alt=""></label>
-                </li>
-                <li>
-                    <label for="slide-4"><img src="https://scontent.fgua9-1.fna.fbcdn.net/v/t39.30808-6/242924204_4996611680352959_2789765760175543827_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_ohc=C6ezb7_FtEsQ7kNvgFx1PfZ&_nc_zt=23&_nc_ht=scontent.fgua9-1.fna&_nc_gid=Aw-4rmR2pjLqVY9lsJGJsxe&oh=00_AYCwl3MC5QNz-oky9jRHd2HtLqmyhLtULHNQ97AnVJkZUQ&oe=6726644D" alt=""></label>
-                </li>
-                <li>
-                    <label for="slide-5"><img src="https://m.media-amazon.com/images/I/71+wn+9KJoL._AC_UF894,1000_QL80_.jpg" alt=""></label>
-                </li>
-                <li>
-                    <label for="slide-6"><img src="https://cdn-icons-png.freepik.com/512/8951/8951072.png" alt=""></label>
-                </li>
+                @foreach (var libro in librosPopulares)
+                {
+                    <li>
+                        <label for="slide-@libro.IdLibro">
+                            <img src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Miniatura">
+                        </label>
+                    </li>
+                }
             </ul>
         </div>
     </div>
 </section>
 
 @code {
-    // Método que se llama al presionar el botón de prestar libro
-    private void PrestarLibro(int isbn)
-    {
-        // Aquí puedes implementar la lógica para prestar el libro
-        // Por ejemplo, mostrar un mensaje o realizar una operación en tu base de datos
-        Console.WriteLine($"Libro con ISBN {isbn} ha sido prestado.");
-    }
-    // Método para abrir la página de agregar libro
-    public void AbrirAgregarLibro()
-    {
+    private List<Libro> librosPopulares = new List<Libro>();
 
-        
-      
+    protected override async Task OnInitializedAsync()
+    {
+        librosPopulares = await ObtenerLibrosPopulares();
+    }
+
+    private async Task<List<Libro>> ObtenerLibrosPopulares()
+    {
+        // Supón que libroService.GetLibrosPopulares() consulta la base de datos y devuelve los libros ordenados por VecesPrestado
+        return await libroService.GetLibrosPopulares(5); // Aquí estamos pidiendo los 5 libros más prestados
+    }
+
+    private void PrestarLibro(int idLibro)
+    {
+        Console.WriteLine($"Libro con ID {idLibro} ha sido prestado.");
+        // Aquí podrías agregar la lógica para marcar el libro como prestado en la base de datos
     }
 }
