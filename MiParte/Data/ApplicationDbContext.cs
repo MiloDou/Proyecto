@@ -2,6 +2,7 @@
 using BlazorWebAppMovies.Models;
 using MiParte.Models;
 
+
 namespace BlazorWebAppMovies.Data
 {
     public class ApplicationDbContext : DbContext
