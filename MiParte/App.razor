@@ -1,23 +1,38 @@
-﻿<Router AppAssembly="@typeof(Program).Assembly">
-    <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
-    </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(MainLayout)">
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
-</Router>
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager Navigation
+
+@if (isAuthenticated)
+{
+    // Si el usuario está autenticado, muestra el contenido de la aplicación
+    <Router AppAssembly="@typeof(Program).Assembly">
+        <Found Context="routeData">
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        </Found>
+        <NotFound>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+}
+else
+{
+    // Mostrar solo el componente de login
+    <MiParte.Pages.Login />
+}
 
 @code {
-    [Inject]
-    private NavigationManager Navigation { get; set; }
+    private bool isAuthenticated;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        var currentUri = Navigation.Uri;
-        if (!currentUri.Contains("login"))
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        isAuthenticated = authState.User.Identity.IsAuthenticated;
+
+        // Si no está autenticado, redirigir a la página de login
+        if (!isAuthenticated)
         {
             Navigation.NavigateTo("/login");
         }

@@ -1,13 +1,44 @@
 ﻿/* Colors and Fonts */
 body {
-    background-color: rgba(244, 91, 105, 1); /* Red Fire */
+    background-color: #FFF9F0; /* Red Fire */
     font-family: 'Times New Roman', sans-serif;
-    background-image: url('https://www.art.salon/images/carlos-merida_espectro-en-rojo_AID510095.jpg?f=grey');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
 }
+
+.container {
+    background-image: url('https://image.invaluable.com/housePhotos/sothebys/81/746581/H0046-L329714122.jpg');
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 100vh; /* Altura completa de la ventana */
+    width: 100vw; /* Ancho completo de la ventana */
+    background-color: #F7F2EB; /* Fondo blanco translúcido */
+    position: relative; /* Permite posicionar elementos hijos de manera absoluta */
+}
+
+    /* Estilo del texto centrado en la parte superior */
+    .container h1 {
+        font-family: 'Times New Roman', sans-serif;
+        font-size: 50px; /* Tamaño de fuente reducido */
+        color: #303030;
+        font-weight: bold;
+        top: 100px; /* Color de texto */
+        text-transform: uppercase; /* Convierte el texto a mayúsculas */
+        background-color: #F7F2EB; /* Fondo blanco translúcido */
+        padding: 0px;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        border-radius: 10px; /* Borde redondeado */
+        position: absolute; /* Posiciona el texto dentro del contenedor */
+        top: 20px; /* Se mueve 20px desde la parte superior */
+        left: 50%; /* Centra horizontalmente */
+        transform: translateX(-50%); /* Ajusta el desplazamiento para centrar el texto */
+        width: 70%; /* Ajusta el ancho al 90% del contenedor */
+        text-align: center; /* Alinea el texto al centro */
+        word-wrap: break-word; /* Permite que el texto se divida si es necesario */
+        white-space: normal; /* Permite que el texto use múltiples líneas */
+    }
+
+
 
 .login {
     background-image: url('https://www.art.salon/images/carlos-merida_espectro-en-rojo_AID510095.jpg?f=grey');
@@ -28,8 +59,8 @@ body {
     .login::before, .login::after {
         content: '';
         position: absolute;
-        width: 800px;
-        height: 800px;
+        width: 1000px;
+        height: 700px;
         border-top-left-radius: 40%;
         border-top-right-radius: 45%;
         border-bottom-left-radius: 35%;
@@ -60,13 +91,16 @@ body {
         width: 100%;
         border: 0;
         padding: 10px 10px;
-        margin: 15px -10px;
+
+        margin: 15px 0; /* Ajuste de margen para espaciado uniforme */
+        color: black; /* Color de texto */
     }
 
     .login button {
         font-family: 'Times New Roman', sans-serif;
         cursor: progress    ;
         color: #fff;
+        cursor: pointer;
         font-size: 16px;
         text-transform: uppercase;
         width: 160px;
@@ -77,6 +111,7 @@ body {
         border-radius: 5px;
         background-color: rgba(244, 91, 105, 1); /* Red Fire */
         transition: background-color 300ms;
+         align-self: center;
     }
 
         .login button:hover {

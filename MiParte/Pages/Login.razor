@@ -3,6 +3,13 @@
 @inject UsuarioService usuarioService
 @inject NavigationManager navigationManager
 
+    
+    
+    <div class="container">
+    <h1>BIBLIOTECA CARLOS MÉRIDA</h1>
+</div>
+
+
 <h3 class="login-title">Login</h3>
 
 <div class="login">
@@ -11,24 +18,26 @@
         <ValidationSummary />
 
         <div class="form-group">
-            <label for="username" class="form-label">Username:</label>
+            <label for="username" class="form-label">Usuario:   </label>
             <InputText id="username" @bind-Value="usuario.Username" class="form-input login-input" />
         </div>
 
         <div class="form-group">
-            <label for="pwd" class="form-label">Password:</label>
+            <label for="pwd" class="form-label">Contraseña:</label>
             <InputText id="pwd" @bind-Value="usuario.Pwd" type="password" class="form-input login-input" />
         </div>
 
         <button type="submit" class="login-button login-button">Login</button>
     </EditForm>
 
-    @if (!string.IsNullOrEmpty(errorMessage))
-    {
-        <p class="error-message">@errorMessage</p>
-    }
-</div>
 
+        @if (!string.IsNullOrEmpty(errorMessage))
+        {
+            <p class="error-message">@errorMessage</p>
+        }
+   
+
+</div>
 @code {
     private Usuario usuario = new Usuario();
     private string errorMessage;
