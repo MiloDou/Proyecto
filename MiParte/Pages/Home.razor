@@ -15,31 +15,32 @@
         <br> 
         <!-- Barra de búsqueda sin autocompletado -->
         <div class="search-bar">
-            <input type="text" placeholder="Buscar ISBN, Autor, Nombre" @bind="searchQuery">
+            <input type="text" placeholder="Buscar por Título, ISBN, Autor" @bind="searchQuery">
             <button @onclick="PerformSearch">→</button>
         </div>
     </header>
-    <div class="card-container">
-        @if (librosBuscados != null && librosBuscados.Any())
+</div>
+<div class="result-container">
+        @if (librosEncontrados.Any())
         {
-            @foreach (var libro in librosBuscados)
+            <p style="color: #333333;">Resultados de busqueda para "@searchQuery"</p>
+            @foreach (var libro in librosEncontrados)
             {
-                <div class="card">
-                    <img src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Portada del libro" />
-                    <h2>@libro.Titulo</h2>
-                    <p><strong>Autor:</strong> @libro.Autor</p>
-                    <p><strong>ISBN:</strong> @libro.ISBN</p>
-                    <p><strong>Género:</strong> @libro.Genero</p>
-                    <p><strong>Disponible:</strong> @(libro.DisponiblePrestamo ? "Sí" : "No")</p>
+                <div class="card" >
+                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(libro.Portada)" alt="Portada del libro" class="card-image" />
+                    <div class="card-content" style="background-color: #f9f9f9; border: 1px solid #ccc; padding: 15px; color: #333333;">
+                        <h4>@libro.Titulo</h4>
+                        <p>Autor: @libro.Autor</p>
+                        <p>ISBN: @libro.ISBN</p>
+                    </div>
                 </div>
             }
         }
-        else
+        else if (!string.IsNullOrWhiteSpace(searchQuery))
         {
-            <p>No se encontraron resultados.</p>
+            <p>No se encontraron resultados para "@searchQuery".</p>
         }
     </div>
-</div>
 
 @code {
     private List<Libro> librosEncontrados = new List<Libro>();
@@ -49,6 +50,12 @@
 
     private async Task PerformSearch()
     {
-        librosBuscados = (await libroService.BuscarLibrosAsync(searchQuery)).ToList();
+        var libros = await libroService.GetLibrosAsync();
+        librosEncontrados = libros
+            .Where(libro =>
+                libro.ISBN.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                libro.Titulo.Contains(searchQuery, StringComparison.OrdinalIgnoreCase) ||
+                libro.Autor.Contains(searchQuery, StringComparison.OrdinalIgnoreCase))
+            .ToList();
     }
 }

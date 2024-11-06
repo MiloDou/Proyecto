@@ -37,7 +37,8 @@ header {
     letter-spacing: 3px;
 }
 
-.card-container {
+.result-container {
+    margin-top: 5px;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -46,17 +47,24 @@ header {
 .card {
     border: 1px solid #ccc;
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 5px;
     width: 200px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
     text-align: center;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-    .card img {
-        width: 100%;
-        height: auto;
-        border-radius: 4px;
-    }
+.card-image {
+    width: 100%;
+    height: auto;
+}
+
+.card-content h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+}
+
 
 .search-bar {
     display: flex;
