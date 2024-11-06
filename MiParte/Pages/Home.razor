@@ -23,7 +23,7 @@
 <div class="result-container">
         @if (librosEncontrados.Any())
         {
-            <p style="color: #333333;">Resultados de busqueda para "@searchQuery"</p>
+            <h4 style="color: #333333;">Resultados de busqueda para "@searchQuery"</h4>
             @foreach (var libro in librosEncontrados)
             {
                 <div class="card" >
@@ -38,7 +38,7 @@
         }
         else if (!string.IsNullOrWhiteSpace(searchQuery))
         {
-            <p>No se encontraron resultados para "@searchQuery".</p>
+                        <h2 style="color: #7d161a; padding-bottom: 50px; text-align: center; justify-content: center; font-weight: bold;">No se encontraron resultados para "@searchQuery".</h2>
         }
     </div>
 
