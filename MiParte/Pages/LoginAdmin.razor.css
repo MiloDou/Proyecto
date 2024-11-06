@@ -1,71 +1,137 @@
-﻿/* Estilos generales */
+﻿/* Colors and Fonts */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    background-color: #FFF9F0; /* Red Fire */
+    font-family: 'Times New Roman', sans-serif;
 }
 
-.login-container {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+.container {
+    background-image: url('https://image.invaluable.com/housePhotos/sothebys/81/746581/H0046-L329714122.jpg');
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 100vh; /* Altura completa de la ventana */
+    width: 100vw; /* Ancho completo de la ventana */
+    background-color: #F7F2EB; /* Fondo blanco translúcido */
+    position: relative; /* Permite posicionar elementos hijos de manera absoluta */
 }
 
-.login-title {
-    color: #333;
-    margin-bottom: 30px;
-}
-
-.form-group {
-    width: 100%;
-    margin-bottom: 20px; /* Agrega espacio entre los inputs */
-}
-
-.form-label {
-    display: block;
-    margin-bottom: 5px;
-    color: #333;
-    text-align: left;
-}
-
-.form-input {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    color: #333;
-    box-sizing: border-box;
-}
-
-/* Botón de login con hover */
-.login-button {
-    display: block;
-    width: 13%;
-    padding: 10px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-    .login-button:hover {
-        background-color: #0056b3;
+    /* Estilo del texto centrado en la parte superior */
+    .container h1 {
+        font-family: 'Times New Roman', sans-serif;
+        font-size: 50px; /* Tamaño de fuente reducido */
+        color: #303030;
+        font-weight: bold;
+        top: 100px; /* Color de texto */
+        text-transform: uppercase; /* Convierte el texto a mayúsculas */
+        background-color: #F7F2EB; /* Fondo blanco translúcido */
+        padding: 0px;
+        padding-top: 30px;
+        padding-bottom: 20px;
+        border-radius: 10px; /* Borde redondeado */
+        position: absolute; /* Posiciona el texto dentro del contenedor */
+        top: 20px; /* Se mueve 20px desde la parte superior */
+        left: 50%; /* Centra horizontalmente */
+        transform: translateX(-50%); /* Ajusta el desplazamiento para centrar el texto */
+        width: 70%; /* Ajusta el ancho al 90% del contenedor */
+        text-align: center; /* Alinea el texto al centro */
+        word-wrap: break-word; /* Permite que el texto se divida si es necesario */
+        white-space: normal; /* Permite que el texto use múltiples líneas */
     }
 
-/* Estilos para el mensaje de error */
-.error-message {
-    color: red;
-    margin-top: 10px;
+
+
+.login {
+    background-image: url('https://www.art.salon/images/carlos-merida_espectro-en-rojo_AID510095.jpg?f=grey');
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9); /* White with slight opacity */
+    padding: 40px 30px 30px 30px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    transform: translate(-50%, -50%);
+    transition: transform 300ms, box-shadow 300ms;
+    box-shadow: 5px 10px 10px rgba(2, 128, 144, 0.2);
+    color: black; /* Green Seaweed with opacity */
+}
+
+    .login::before, .login::after {
+        content: '';
+        position: absolute;
+        width: 1000px;
+        height: 700px;
+        border-top-left-radius: 40%;
+        border-top-right-radius: 45%;
+        border-bottom-left-radius: 35%;
+        border-bottom-right-radius: 40%;
+        z-index: -1;
+    }
+
+    .login::before {
+        left: 40%;
+        bottom: -130%;
+        background-color: rgba(69, 105, 144, 0.15); /* Blue Queen with opacity */
+        animation: waves 6s infinite linear;
+    }
+
+    .login::after {
+        left: 35%;
+        bottom: -125%;
+        background-color: rgba(2, 128, 144, 0.2); /* Green Seaweed with opacity */
+        animation: waves 7s infinite linear;
+    }
+
+    .login input {
+        font-family: 'Times New Roman', sans-serif;
+        display: block;
+        border-radius: 5px;
+        font-size: 16px;
+        background: white;
+        width: 100%;
+        border: 0;
+        padding: 10px 10px;
+        margin: 15px 0; /* Ajuste de margen para espaciado uniforme */
+        color: black; /* Color de texto */
+    }
+
+    .login button {
+        font-family: 'Times New Roman', sans-serif;
+        cursor: progress;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        text-transform: uppercase;
+        width: 160px;
+        border: 0;
+        padding: 10px 0;
+        margin-top: 10px;
+        margin-left: -5px;
+        border-radius: 5px;
+        background-color: rgba(244, 91, 105, 1); /* Red Fire */
+        transition: background-color 300ms;
+        align-self: center;
+    }
+
+        .login button:hover {
+            background-color: rgba(200, 75, 85, 1); /* Darkened Red Fire */
+        }
+
+@keyframes waves {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6); /* White with opacity */
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: 12px;
 }

@@ -205,20 +205,19 @@ input[type="checkbox"] {
         transform: rotate(40deg);
     }
 
+
 /* Estilos para la tabla de libros */
 table {
-    margin-right: 10px;
-    margin-left: 20px;
-    width: 50%;
+    width: 100%; /* Asegura que la tabla use todo el espacio del contenedor */
+    max-width: 1000px; /* Opcional: ancho máximo para la tabla */
     border-collapse: collapse;
-    margin-top: 1.5rem;
+    margin: 1.5rem auto; /* Centra la tabla y le da espacio superior */
     background-color: #FFF9F0;
     border-radius: 8px;
-    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: auto;
 }
 
+    /* Estilos para celdas y filas */
     table th,
     table td {
         padding: 1.6rem;
@@ -236,7 +235,6 @@ table {
         border-radius: 4px;
     }
 
-    /* Estilos para filas */
     table tr:nth-child(even) {
         background-color: #f2f2f2;
     }
@@ -244,3 +242,4 @@ table {
     table tr:hover {
         background-color: #e6f7ff;
     }
+

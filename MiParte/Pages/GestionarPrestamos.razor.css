@@ -1,22 +1,17 @@
-﻿@@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
-
+﻿
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    @@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
     --h: 212deg;
     --l: 43%;
     --brandColor: hsl(var(--h), 71%, var(--l));
-    font-family: Montserrat, sans-serif;
-    margin: 0;
+    font-family: 'Montserrat', sans-serif;
     background-color: whitesmoke;
-}
-
-p {
-    margin: 0;
-    line-height: 1.6;
+    color: #333;
 }
 
 ol {
@@ -38,11 +33,11 @@ li {
     margin: 2rem auto;
     padding: 2rem 1rem 1rem;
     box-shadow: 0.1rem 0.1rem 1.5rem rgba(0, 0, 0, 0.3);
-    border-radius: 0.25rem;
-    overflow: hidden;
+    border-radius: 0.5rem;
     background-color: white;
+    overflow: hidden;
+    border: 2px solid #333; /* Borde oscuro */
 }
-
 
     li::before {
         content: '';
@@ -56,15 +51,13 @@ li {
     }
 
 h3, label {
-    @@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
     display: flex;
     align-items: baseline;
     margin: 0 0 1rem;
-    color: black;
+    color: #333;
 }
 
     h3::before {
-        @@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
         display: flex;
         justify-content: center;
         align-items: center;
@@ -73,47 +66,101 @@ h3, label {
         width: 3rem;
         height: 3rem;
         content: counter(list);
-        padding: 1rem;
         border-radius: 50%;
         background-color: var(--c1);
         color: white;
     }
 
-.sin-elementos {
-    background-color: #ffcccc; /* Color de fondo rojo claro */
-    color: #990000; /* Color de texto rojo oscuro */
-    font-weight: bold; /* Texto en negrita */
-    text-align: center; /* Centrar el texto */
-    padding: 10px; /* Espaciado interno */
-    border: 2px dashed #990000; /* Borde punteado */
-    border-radius: 5px; /* Bordes redondeados */
-    margin-top: 15px; /* Separación superior */
+
+.sort-container {
+    display: flex;
+    background-color: #BAD6EB;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #BAD6EB;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 300px;
 }
+
+    .sort-container label {
+        margin-right: 10px;
+        font-weight: bold;
+        color: #333;
+        font-size: 20px;
+    }
+
+.sort-container select {
+    padding: 8px 12px;
+    font-size: 22px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    transition: border-color 0.3s ease;
+}
+
+    .sort-container select:focus {
+        outline: none;
+        border-color: #007BFF;
+    }
 .book-cover {
     width: 150px;
     height: auto;
     object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
-    .return-button {
-    display: block;
-    margin-top: 10px;
+
+    .book-cover:hover {
+        transform: scale(1.05);
+    }
+
+.error-message {
+    color: #d9534f;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.sin-elementos {
+    background-color: #ffcccc;
+    color: #990000;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    border: 2px dashed #990000;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: row-reverse; /* Organiza los botones de derecha a izquierda */
+    gap: 1000px; /* Espacio entre botones */
+}
+
+.button {
+    margin-top:20px;
     padding: 8px 16px;
-    font-size: 14px;
-    background-color: #007BFF;
-    color: #ffffff;
+    font-size: 20px;
+    background-color: #fbaf2b;
+    color: black;
+    font-weight: bold;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-    .return-button:hover {
-        background-color: #0056b3;
+    .button:hover {
+        background-color: #7096D1;
     }
 
 
+
 @media (min-width: 40em) {
-    @@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
     li {
         margin: 3rem auto;
         padding: 3rem 2rem 2rem;
@@ -122,93 +169,10 @@ h3, label {
     h3 {
         font-size: 2.25rem;
         margin: 0 0 2rem;
+        font-weight: bold;
     }
 
         h3::before {
             margin-right: 1.5rem;
         }
 }
-
-/* Contenedor del menú de ordenamiento */
-.sort-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-    /* Etiqueta del menú de ordenamiento */
-    .sort-container label {
-        margin-right: 10px;
-        color: black;
-        font-weight: bold;
-    }
-
-    /* Menú desplegable */
-    .sort-container select {
-        padding: 5px;
-        font-size: 16px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        margin-right: 10px;
-    }
-
-    /* Botón de ordenamiento */
-    .sort-container .sort-button {
-        padding: 5px 10px;
-        background-color: #007BFF;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-        .sort-container .sort-button:hover {
-            background-color: #0056b3;
-        }
-
-.book-cover {
-    width: 150px;
-    height: auto;
-    object-fit: cover;
-}
-
-p, h3 {
-    color: black;
-}
-
-.error-message {
-    color: red;
-    text-align: center;
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-.sin-elementos {
-    background-color: #ffcccc; /* Color de fondo rojo claro */
-    color: #990000; /* Color de texto rojo oscuro */
-    font-weight: bold; /* Texto en negrita */
-    text-align: center; /* Centrar el texto */
-    padding: 10px; /* Espaciado interno */
-    border: 2px dashed #990000; /* Borde punteado */
-    border-radius: 5px; /* Bordes redondeados */
-    margin-top: 15px; /* Separación superior */
-}
-
-.return-button {
-    display: block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    font-size: 14px;
-    background-color: #007BFF;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-    .return-button:hover {
-        background-color: #0056b3;
-    }

@@ -1,5 +1,6 @@
 ﻿@page "/GestionarPrestamos"
 @inject LibroService libroService
+@inject NavigationManager navigationManager
 
 <div class="sort-container">
     <label for="sortSelect">Ordenar por:</label>
@@ -13,43 +14,47 @@
 
 @if (!string.IsNullOrEmpty(errorMessage))
 {
-    <div class="error-message">
-        <p>@errorMessage</p>
-    </div>
+        <div class="error-message">
+            <p>@errorMessage</p>
+        </div>
 }
 else
 {
-    <ol style="--length: @Libros?.Count ?? 0" role="list">
+        <ol style="--length: @Libros?.Count ?? 0" role="list">
         @if (Libros != null)
         {
             @foreach (var libro in Libros)
             {
-                <li style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
-                    <div>
-                        <h3>@libro.Titulo</h3>
-                        <p style="color: black;"><strong>Autor:</strong> @libro.Autor</p>
-                        <p style="color: black;"><strong>Género:</strong> @libro.Genero</p>
-                        <p style="color: black;"><strong>ISBN:</strong> @libro.ISBN</p>
-                        <button class="return-button" @onclick="() => EliminarLibro(libro)" disabled="@(libro.DisponiblePrestamo)">
-                            Devolver libro
-                        </button>
-                    </div>
-                    <div>
+                            <li style="display: flex; justify-content: space-between; align-items: flex; margin-bottom: 40px;">
+                                <div>
+                                    <h3>@libro.Titulo</h3>
+                                    <p style="color: black;"><strong>Autor:</strong> @libro.Autor</p>
+                                    <p style="color: black;"><strong>Género:</strong> @libro.Genero</p>
+                                    <p style="color: black;"><strong>ISBN:</strong> @libro.ISBN</p>
+
+                                    <button class="button" @onclick="() => PrestarLibro(libro)">
+                                        Prestar libro
+                                    </button>
+                                    <button class="button" @onclick="() => EliminarLibro(libro)">
+                                        Devolver libro
+                                    </button>
+                                </div>
+                                <div>
                         @if (libro.Portada != null)
                         {
-                            <img src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Imagen de @libro.Titulo" class="book-cover">
+                                            <img src="data:image/png;base64,@Convert.ToBase64String(libro.Portada)" alt="Imagen de @libro.Titulo" class="book-cover">
                         }
-                    </div>
-                </li>
+                                </div>
+                            </li>
             }
         }
-    </ol>
+        </ol>
 
     @if (Libros == null || Libros.Count == 0)
     {
-        <div id="mensaje-vacio" class="sin-elementos">
-            <p>No hay más libros prestados.</p>
-        </div>
+                <div id="mensaje-vacio" class="sin-elementos">
+                    <h2>No hay más libros prestados.</h2>
+                </div>
     }
 }
 
@@ -76,6 +81,19 @@ else
             Libros.Remove(libro); // Elimina el libro de la lista
         }
         StateHasChanged(); // Actualiza la vista para reflejar el cambio
+    }
+
+    private void PrestarLibro(Libro libro)
+    {
+        // Implementar la lógica de préstamo del libro
+        // Cambiar el estado de préstamo o mover el libro a otra lista
+        libro.DisponiblePrestamo = false; // Ejemplo de actualización de estado
+        StateHasChanged();
+    }
+
+    private void VerDetalles(Libro libro)
+    {
+     
     }
 
     private void SortLibros(ChangeEventArgs e)
